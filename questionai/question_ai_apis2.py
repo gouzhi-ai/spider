@@ -322,6 +322,7 @@ class Question_AI_Apis:
         all_qa = []
         # 记录json文件里记录的的原始时间
         initial_time = get_json_time(subject_name)
+        self.logger.info(f"initial_time: {initial_time}")
         # 状态值：标记是否开始采集详情页
         status = 0
         for page in range(start_page, end_page + 1):
@@ -392,9 +393,9 @@ class Question_AI_Apis:
         # subject_id_list = ['2']  # test
         for subject_id in subject_id_list:
             subject_name = subject[subject_id]
-            if subject_id=='7':continue
-            if subject_id=='8':continue
-            if subject_id=='51':continue
+            # if subject_id=='7':continue
+            # if subject_id=='8':continue
+            # if subject_id=='51':continue
             try:
                 all_qa = self.get_all_qa(subjectId=subject_id, start_page=1, end_page=100)
                 save_list_to_json(all_qa, f"{subject_name}.json")
