@@ -22,6 +22,20 @@ def is_network_available():
 
 
 
+# 获取当前日期时间
+# 格式化为 YYYYMMDDHHMMSS 形式的字符串
+def get_time_str():
+    formatted_time = datetime.now().strftime('%Y%m%d%H%M%S')
+    return formatted_time
+
+
+# 获取13位时间戳
+# 获取当前时间，并调用 timestamp() 方法获取时间戳（秒），然后乘以1000得到毫秒
+def get_13_timestamp_ms():
+    timestamp_ms = int(datetime.now().timestamp() * 1000)
+    return timestamp_ms
+
+
 def compare_time(time_a: str, time_b: str) -> bool:
     try:
         # 将ISO 8601格式的字符串转换为datetime对象
@@ -33,7 +47,6 @@ def compare_time(time_a: str, time_b: str) -> bool:
     except ValueError as e:
         print(f"错误：输入的时间格式不正确 - {e} ,time_a:{time_a},time_a: {time_b}")
         return False
-
 
 
 # 判断时间是否在昨天上午10点之后
@@ -124,6 +137,8 @@ def update_json_time(key: str, new_value: str) -> bool:
     except Exception as e:
         print(f"错误：操作文件时发生异常 - {str(e)}")
         return False
+
+
 # 使用示例
 def test():
     # 假设update_time.json内容如下：
@@ -132,9 +147,10 @@ def test():
     #     "key2": "2024-03-14T11:00:00Z"
     # }
 
-    result = get_json_time("key1")
+    result = get_13_timestamp_ms()
     print(result)  # 输出对应的值或None
 
 
 if __name__ == '__main__':
     test()
+    # print(1)

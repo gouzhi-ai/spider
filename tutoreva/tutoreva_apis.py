@@ -14,11 +14,36 @@ from bs4 import BeautifulSoup
 from questionai.proxy import get_proxy, get_proxy_ip
 from questionai.utils import compare_time, get_datetime, is_network_available, get_json_time, update_json_time
 from cookies import cookies
+from questionai.utils import get_13_timestamp_ms, get_time_str
 
-
-subject={
-
+subject = {
+    "math": [
+        "Calculus",
+        "Probability and Statistics",
+        "Linear Algebra"
+    ],
+    "physics": [
+        "General Physics"
+    ],
+    "chemistry": [
+        "Chemical Principle",
+        "General Chemistry"
+    ],
+    "biology": [
+        "Molecular Biology of the Cell",
+        "General Biology"
+    ],
+    "history": [
+        "History"
+    ],
+    "english": [
+        "English"
+    ],
+    "law": [
+        "Business Law"
+    ]
 }
+
 
 class Tutoreva_AI_Apis:
     def __init__(self):
@@ -39,10 +64,8 @@ class Tutoreva_AI_Apis:
         self.logger = logging.getLogger(__name__)
 
     # 列表页
-    def get_index(self, subjectId: str, page: str, token:str ,proxies: dict = None, cookies_str: str = None):
-        self.logger.info(f'Getting index for {subjectId} {page}')
-        print(f"index {subjectId}  {page} ")
-
+    def get_index(self, page: str, category_name: str, subject_name: str, token: str, create_source: str = "seo",
+                  pagesize: str = "10", proxies: dict = None):
 
         headers = {
             "accept": "application/json, text/plain, */*",
@@ -50,13 +73,13 @@ class Tutoreva_AI_Apis:
             "app-version": "2.6",
             "authorization": f"Token {token}",
             "cache-control": "no-cache",
-            "device-id": "4f58e852-4850-4ec2-824d-645dac2c9a8c",
+            # "device-id": "4f58e852-4850-4ec2-824d-645dac2c9a8c",
             "device-type": "2",
             "origin": "https://www.tutoreva.com",
             "pragma": "no-cache",
             "priority": "u=1, i",
             "referer": "https://www.tutoreva.com/",
-            "request-id": "1399763-20241210170648-61173db4f39a4512884ba5742b1f54ab",
+            "request-id": f"1399763-{get_time_str()}-61173db4f39a4512884ba5742b1f54ab",
             "sec-ch-ua": "\\Not)A;Brand;v=\\99, \\Microsoft",
             "sec-ch-ua-mobile": "?0",
             "sec-ch-ua-platform": "\\Windows",
@@ -67,20 +90,22 @@ class Tutoreva_AI_Apis:
         }
         url = "https://luffy.tutoreva.com/photograph_searching/seo/questions/list/"
         params = {
-            "page": "1",
-            "pagesize": "10",
-            "create_source": "seo",
-            "category_name": "math",
-            "subject_name": "Calculus",
-            "$t": "1733821608949"
+            "page": f"{page}",
+            "pagesize": f"{pagesize}",
+            "create_source": f"{create_source}",
+            "category_name": f"{category_name}",
+            "subject_name": f"{subject_name}",
+            "$t": f"{get_13_timestamp_ms()}"
         }
 
-        for i in range(1):
+        self.logger.info(f'Getting index for {str(params)}')
+        print(f"index  {str(params)} ")
+        for i in range(5):
             try:
                 requests.session().keep_alive = False
-                response = requests.get(url, headers=headers, params=params, timeout=10)#, proxies=proxies)
+                response = requests.get(url=url, headers=headers, params=params, proxies=proxies, timeout=10)
                 if response.status_code == 200:
-                    self.logger.info(f'Getting index for {subjectId} {page} success')
+                    self.logger.info(f'Getting index for {str(params)} success')
                     # print(f"index {subject[subjectId]}  {page}  成功 ")
                     return response.text
                 # else:
@@ -94,24 +119,22 @@ class Tutoreva_AI_Apis:
         return "0"
 
     # 详情页
-    def get_details(self, subjectId: str, page: str, url: str, proxies: dict = None, cookies_str: str = None):
-        self.logger.info(f'Getting details for {subject}  {page}  {url}')
-        print(f"details {subject}  {page} {url}")
-
+    def get_details(self, recognized_type_encoded: str, question_id_encoded: str, token: str, proxies: dict = None,
+                    create_source: str = "seo"):
 
         headers = {
             "accept": "application/json, text/plain, */*",
             "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
             "app-version": "2.6",
-            "authorization": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM5OTc2MywidXNlcl9tb2RlbF9uYW1lIjoiVXNlckFwcCIsImV4cGlyZV90aW1lIjoiMjAyNC0xMi0xMlQwOTo0NDo1NC4xNzc3NjUiLCJhY3QiOiJ0b2tlbiIsImRpZmYiOjI1OTIwMH0.qG1wq2sMMXmX79cc1_TgC17HzcrIqkoC1NAZG_76Qq0",
+            "authorization": f"Token {token}",
             "cache-control": "no-cache",
-            "device-id": "4f58e852-4850-4ec2-824d-645dac2c9a8c",
+            # "device-id": "4f58e852-4850-4ec2-824d-645dac2c9a8c",
             "device-type": "2",
             "origin": "https://www.tutoreva.com",
             "pragma": "no-cache",
             "priority": "u=1, i",
             "referer": "https://www.tutoreva.com/",
-            "request-id": "1399763-20241210171908-988c26dab367401e8202d642876752af",
+            "request-id": f"1399763-{get_time_str()}-988c26dab367401e8202d642876752af",
             "sec-ch-ua": "\\Not)A;Brand;v=\\99, \\Microsoft",
             "sec-ch-ua-mobile": "?0",
             "sec-ch-ua-platform": "\\Windows",
@@ -122,18 +145,21 @@ class Tutoreva_AI_Apis:
         }
         url = "https://luffy.tutoreva.com/photograph_searching/seo/questions/detail/"
         params = {
-            "recognized_type_encoded": "tq",
-            "create_source": "seo",
-            "question_id_encoded": "9af4",
-            "$t": "1733822348787"
+            "recognized_type_encoded": f"{recognized_type_encoded}",
+            "create_source": f"{create_source}",
+            "question_id_encoded": f"{question_id_encoded}",
+            "$t": f"{get_13_timestamp_ms()}"
         }
+
+        self.logger.info(f'Getting details for {str(params)}  {self.base_url}')
+        print(f"details {str(params)}")
 
         for i in range(1):
             try:
                 requests.session().keep_alive = False
                 response = requests.get(url, headers=headers, params=params, proxies=proxies, timeout=10)
                 if response.status_code == 200:
-                    self.logger.info(f'Getting details for {subject} {page}  {url}  success')
+                    self.logger.info(f'Getting details for {str(params)} success')
                     # print(f"details {subject[subjectId]}  {page}  成功  {url}")
                     return response.text
                 else:
@@ -147,23 +173,6 @@ class Tutoreva_AI_Apis:
                 self.proxies = get_proxy(self.proxy_ip)
                 # print(f"Crawling stopped due to error: {e}")
         return "0"
-
-    # 下载图片
-    # def get_img(self, url: str, proxies: dict = None):
-    #     # print("-----------正在下载图片 ")
-    #     self.logger.info(f'Getting image for {url}')
-    #     # 这是一个图片的url
-    #     requests.session().keep_alive = False
-    #
-    #     response = requests.get(url, proxies=proxies, timeout=10)
-    #     # 获取的文本实际上是图片的二进制文本
-    #     img = response.content
-    #     # 将他拷贝到本地文件 w 写  b 二进制  wb代表写入二进制文本
-    #     # 保存路径
-    #     path = '20241128.jpg'
-    #
-    #     return img
-
 
     # 列表页 url提取
     def get_simple_data(self, index_text):
@@ -317,7 +326,8 @@ class Tutoreva_AI_Apis:
                     elif status == 0:
                         status = 1
                         # 更新了
-                        self.logger.info(f"Updated  one_simple_data['datePublished']:{one_simple_data['datePublished']}, initial_time:{initial_time}")
+                        self.logger.info(
+                            f"Updated  one_simple_data['datePublished']:{one_simple_data['datePublished']}, initial_time:{initial_time}")
                         update_json_time(subject_name, one_simple_data['datePublished'])
                 except Exception as e:
                     print(one_simple_data)
@@ -361,9 +371,9 @@ class Tutoreva_AI_Apis:
         # subject_id_list = ['2']  # test
         for subject_id in subject_id_list:
             subject_name = subject[subject_id]
-            if subject_id=='7':continue
-            if subject_id=='8':continue
-            if subject_id=='51':continue
+            if subject_id == '7': continue
+            if subject_id == '8': continue
+            if subject_id == '51': continue
             try:
                 all_qa = self.get_all_qa(subjectId=subject_id, start_page=1, end_page=100)
                 save_list_to_json(all_qa, f"{subject_name}.json")
@@ -371,6 +381,7 @@ class Tutoreva_AI_Apis:
                 print(f"Error parsing JSON: {e}")
                 self.proxy_ip = get_proxy_ip()
                 self.proxies = get_proxy(self.proxy_ip)
+
 
 def save_list_to_json(data_list, output_file):
     try:
@@ -390,7 +401,8 @@ def scheduler_task_pre():
 if __name__ == '__main__':
     # scheduler_task_pre()
     print("start!")
-    tutoreva_ai_apis = Tutoreva_AI_Apis()
-    token=cookies[0]["token"]
-    k=tutoreva_ai_apis.get_index("1","1", token=token)
-    print(k)
+    # tutoreva_ai_apis = Tutoreva_AI_Apis()
+    # token=cookies[0]["token"]
+    # k=tutoreva_ai_apis.get_index("1","1", token=token)
+    # print(k)
+    # print(get_13_timestamp_ms())
