@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 
 from questionai.proxy import get_proxy, get_proxy_ip
 from questionai.utils import compare_time, get_datetime, is_network_available, get_json_time, update_json_time
+from cookies import cookies
 
 
 subject={
@@ -38,16 +39,16 @@ class Tutoreva_AI_Apis:
         self.logger = logging.getLogger(__name__)
 
     # 列表页
-    def get_index(self, subjectId: str, page: str, proxies: dict = None, cookies_str: str = None):
-        self.logger.info(f'Getting index for {subject} {page}')
-        print(f"index {subject}  {page} ")
+    def get_index(self, subjectId: str, page: str, token:str ,proxies: dict = None, cookies_str: str = None):
+        self.logger.info(f'Getting index for {subjectId} {page}')
+        print(f"index {subjectId}  {page} ")
 
 
         headers = {
             "accept": "application/json, text/plain, */*",
             "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
             "app-version": "2.6",
-            "authorization": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM5OTc2MywidXNlcl9tb2RlbF9uYW1lIjoiVXNlckFwcCIsImV4cGlyZV90aW1lIjoiMjAyNC0xMi0xMlQwOTo0NDo1NC4xNzc3NjUiLCJhY3QiOiJ0b2tlbiIsImRpZmYiOjI1OTIwMH0.qG1wq2sMMXmX79cc1_TgC17HzcrIqkoC1NAZG_76Qq0",
+            "authorization": f"Token {token}",
             "cache-control": "no-cache",
             "device-id": "4f58e852-4850-4ec2-824d-645dac2c9a8c",
             "device-type": "2",
@@ -77,9 +78,9 @@ class Tutoreva_AI_Apis:
         for i in range(1):
             try:
                 requests.session().keep_alive = False
-                response = requests.get(url, headers=headers, params=params, proxies=proxies, timeout=10)
+                response = requests.get(url, headers=headers, params=params, timeout=10)#, proxies=proxies)
                 if response.status_code == 200:
-                    self.logger.info(f'Getting index for {subject[subjectId]} {page} success')
+                    self.logger.info(f'Getting index for {subjectId} {page} success')
                     # print(f"index {subject[subjectId]}  {page}  成功 ")
                     return response.text
                 # else:
@@ -316,7 +317,7 @@ class Tutoreva_AI_Apis:
                     elif status == 0:
                         status = 1
                         # 更新了
-                        self.logger.info("Updated")
+                        self.logger.info(f"Updated  one_simple_data['datePublished']:{one_simple_data['datePublished']}, initial_time:{initial_time}")
                         update_json_time(subject_name, one_simple_data['datePublished'])
                 except Exception as e:
                     print(one_simple_data)
@@ -389,3 +390,7 @@ def scheduler_task_pre():
 if __name__ == '__main__':
     # scheduler_task_pre()
     print("start!")
+    tutoreva_ai_apis = Tutoreva_AI_Apis()
+    token=cookies[0]["token"]
+    k=tutoreva_ai_apis.get_index("1","1", token=token)
+    print(k)
