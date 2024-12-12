@@ -7,7 +7,6 @@
 
 import json
 import logging
-
 import requests
 from bs4 import BeautifulSoup
 
@@ -45,12 +44,16 @@ subject = {
 }
 
 
+
 class Tutoreva_AI_Apis:
     def __init__(self):
         self.base_url = "https://www.tutoreva.com/study-resources/"
         self.proxy_ip = get_proxy_ip()
         self.proxies = get_proxy(self.proxy_ip)
         self.setup_logging()
+
+        self.category_name = ""
+        self.subject_name = ""
 
     def setup_logging(self):
         logging.basicConfig(
@@ -175,8 +178,8 @@ class Tutoreva_AI_Apis:
         return "0"
 
     # 列表页 url提取
-    def get_simple_data(self, index_text):
-        print("get_urls start")
+    def get_index_data(self, index_text):
+        print("get_index start")
         re_text = str(index_text)
         re_text = json.loads(re_text)
         re_text = re_text.get("data")
@@ -196,7 +199,7 @@ class Tutoreva_AI_Apis:
         return one_page_simple_data
 
     # 详情页 问题、图片、答案、解释
-    def get_one_data(self, details_text):
+    def get_details_data(self, details_text):
         print("get_one_data start")
         html = details_text
         soup = BeautifulSoup(html, "html.parser")
@@ -251,49 +254,6 @@ class Tutoreva_AI_Apis:
         self.logger.info(f"get_one_data success!   QA answer datePublished {qa_data['answer']['datePublished']}")
         return qa_data
 
-    # def insert_to_sql(data):
-    #     conn = pymysql.connect(host="localhost", database="MYSQL", user='root',
-    #                            password='123syh123', charset='utf8mb4')
-    #
-    #     cursor = conn.cursor()
-    #     # 达人个人信息表
-    #     insert_sql = ("INSERT INTO questionai VALUES (%s,%s, %s, %s)")
-    #
-    #     try:
-    #         cursor.execute("USE lelekt;")
-    #         cursor.execute(insert_sql, data)
-    #         conn.commit()
-    #         print("数据插入成功！")
-    #     except pymysql.Error as e:
-    #         print(f"数据插入失败：{e}")
-    #     finally:
-    #         cursor.close()
-    #         conn.close()
-
-    # def data_to_csv(data):
-    #     with open('1.csv', 'a', newline='') as file:
-    #         writer = csv.writer(file)
-    #         writer.writerows(data)
-    #
-    #     print("Data has been written to 1.csv")
-    # def download_img(url_info):
-    #     print("-----------正在下载图片 ")
-    #     # 这是一个图片的url
-    #     try:
-    #
-    #         response = requests.get(url)
-    #         # 获取的文本实际上是图片的二进制文本
-    #         img = response.content
-    #         # 将他拷贝到本地文件 w 写  b 二进制  wb代表写入二进制文本
-    #         # 保存路径
-    #         path = '20241128.jpg'
-    #         print(img)
-    #         with open(path, 'wb') as f:
-    #             f.write(img)
-    #     except Exception as ex:
-    #         print("--------出错继续----{}".format(ex))
-    #         pass
-
     def get_all_qa(self, subjectId: str, start_page: int, end_page: int):
         self.logger.info(f"{subject[subjectId]} Starting crawler from page {start_page} to {end_page}")
         subject_name = subject[subjectId]
@@ -311,7 +271,7 @@ class Tutoreva_AI_Apis:
                 self.logger.error(f"Network is not available. subject_name={subject_name}, page={page}")
                 continue
 
-            one_page_simple_data = self.get_simple_data(index_text)
+            one_page_simple_data = self.get_index_data(index_text)
 
             for one_simple_data in one_page_simple_data:
 
@@ -341,7 +301,7 @@ class Tutoreva_AI_Apis:
                 if details_text == "0":
                     continue
                 try:
-                    qa_data = self.get_one_data(details_text)
+                    qa_data = self.get_details_data(details_text)
                     qa_data['question']['text'] = one_simple_data['contentLatex']
                     qa_data['question']['image'] = one_simple_data['imageURL']
                 except Exception as e:
@@ -365,17 +325,11 @@ class Tutoreva_AI_Apis:
 
     # 采集所有科目 1-100页。
     def get_all_subject(self):
-        # subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
-        subject_id_list = ['2', '3', '4', '5', '6',
-                           '7', '8', '51']
-        # subject_id_list = ['2']  # test
+
         for subject_id in subject_id_list:
             subject_name = subject[subject_id]
-            if subject_id == '7': continue
-            if subject_id == '8': continue
-            if subject_id == '51': continue
             try:
-                all_qa = self.get_all_qa(subjectId=subject_id, start_page=1, end_page=100)
+                all_qa = self.get_all_qa()
                 save_list_to_json(all_qa, f"{subject_name}.json")
             except Exception as e:
                 print(f"Error parsing JSON: {e}")
@@ -401,8 +355,4 @@ def scheduler_task_pre():
 if __name__ == '__main__':
     # scheduler_task_pre()
     print("start!")
-    # tutoreva_ai_apis = Tutoreva_AI_Apis()
-    # token=cookies[0]["token"]
-    # k=tutoreva_ai_apis.get_index("1","1", token=token)
-    # print(k)
-    # print(get_13_timestamp_ms())
+
