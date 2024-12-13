@@ -133,7 +133,7 @@ class Question_AI_Apis:
         print(f"details {subject[subjectId]}  {page} {url}")
 
         headers = {
-            "Connection":"close",
+            "Connection": "close",
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
             "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
             "cache-control": "no-cache",
@@ -269,6 +269,7 @@ class Question_AI_Apis:
                 print(f"Error parsing JSON: {e}")
                 continue
 
+
         print(f"get_one_data success! {qa_data['metadata']['url']}")
         self.logger.info(f"get_one_data success!   QA answer datePublished {qa_data['answer']['datePublished']}")
         return qa_data
@@ -387,15 +388,11 @@ class Question_AI_Apis:
 
     # 采集所有科目 1-100页。
     def get_all_subject(self):
-        # subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
-        subject_id_list = ['2', '3', '4', '5', '6',
-                           '7', '8', '51']
+        subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
+        # subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '51']
         # subject_id_list = ['2']  # test
         for subject_id in subject_id_list:
             subject_name = subject[subject_id]
-            # if subject_id=='7':continue
-            # if subject_id=='8':continue
-            # if subject_id=='51':continue
             try:
                 all_qa = self.get_all_qa(subjectId=subject_id, start_page=1, end_page=100)
                 save_list_to_json(all_qa, f"{subject_name}.json")
@@ -403,6 +400,7 @@ class Question_AI_Apis:
                 print(f"Error parsing JSON: {e}")
                 self.proxy_ip = get_proxy_ip()
                 self.proxies = get_proxy(self.proxy_ip)
+
 
 def save_list_to_json(data_list, output_file):
     try:

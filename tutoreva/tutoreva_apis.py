@@ -179,24 +179,38 @@ class Tutoreva_AI_Apis:
 
     # 列表页 url提取
     def get_index_data(self, index_text):
-        print("get_index start")
+        print("get_index_data start")
         re_text = str(index_text)
-        re_text = json.loads(re_text)
+        re_text = json.loads(re_text,strict=False)
         re_text = re_text.get("data")
-        index_list = re_text.get("list")
-        one_page_simple_data = []
+        base_data={
+            "count": re_text.get("count"),
+            "page": re_text.get("page"),
+            "pages": re_text.get("pages"),
+            "pagesize": re_text.get("pagesize"),
+        }
+        index_list = re_text.get("lists")
+        one_page_index_data = []
 
         for i in index_list:
             one_simple_data = {
-                "url": i.get("canonical"),
-                "contentLatex": i.get("contentLatex"),
-                "imageURL": i.get("imageURL"),
-                "datePublished": i.get("datePublished")
+                "id": i.get("id"),
+                "question_id": i.get("question_id"),
+                "recognized_type": i.get("recognized_type"),
+                "category_name": i.get("category_name"),
+                "subject_name": i.get("subject_name"),
+                "seo_html_url": i.get("seo_html_url"),
+                "recognized_type_encoded":"",
+                "question_id_encoded":""
             }
-            one_page_simple_data.append(one_simple_data)
+            string_list = one_simple_data["seo_html_url"].split('-')[-2:]
+            one_simple_data["recognized_type_encoded"] = string_list[0]
+            one_simple_data["question_id_encoded"] = string_list[1]
 
-        print("get_urls success! ")
-        return one_page_simple_data
+            one_page_index_data.append(one_simple_data)
+
+        print("get_index_data success! ")
+        return [base_data,one_page_index_data]
 
     # 详情页 问题、图片、答案、解释
     def get_details_data(self, details_text):
@@ -326,7 +340,7 @@ class Tutoreva_AI_Apis:
     # 采集所有科目 1-100页。
     def get_all_subject(self):
 
-        for subject_id in subject_id_list:
+        for subject_id in subject:
             subject_name = subject[subject_id]
             try:
                 all_qa = self.get_all_qa()
@@ -355,4 +369,179 @@ def scheduler_task_pre():
 if __name__ == '__main__':
     # scheduler_task_pre()
     print("start!")
-
+    tutoreva_ai_apis = Tutoreva_AI_Apis()
+    data="""{
+    "code": 200,
+    "msg": "success",
+    "data": {
+        "count": 96,
+        "page": 1,
+        "pages": 10,
+        "pagesize": 10,
+        "lists": [
+            {
+                "id": 1,
+                "question_id": 39668,
+                "recognized_type": "recognized_textbook_question",
+                "category_name": "Math",
+                "subject_name": "Calculus",
+                "seo_info": {
+                    "seo_answer": "State the problem and objective Consider the function $f(t)=2.5 t^{2}+6 t$. The objective is to find the derivative of the function using the definition of derivative. Also, state the domain of the function and its derivative.",
+                    "seo_html_url": "19-30-find-derivative-function-using-definition-derivative-state-domain-function-domain-deriv-tq-9af4",
+                    "seo_description": "19–30 Find the derivative of the function using the definition of derivative. State the domain of the function and the domain of its derivative.21. f(t)=2.5 t2+6 t"
+                },
+                "original_image_url": "",
+                "stem": "19–30 Find the derivative of the function using the definition of derivative. State the domain of the function and the domain of its \nderivative.\n21. $f(t)=2.5 t^{2}+6 t$",
+                "status": "valid",
+                "seo_html_url": "19-30-find-derivative-function-using-definition-derivative-state-domain-function-domain-deriv-tq-9af4"
+            },
+            {
+                "id": 2,
+                "question_id": 42434,
+                "recognized_type": "recognized_textbook_question",
+                "category_name": "Math",
+                "subject_name": "Calculus",
+                "seo_info": {
+                    "seo_answer": "Apply the definition of a derivative By definition:\n$f^\\prime(x)=\\lim _{h \\rightarrow 0} \\frac{f(x+h)-f(x)}{h}$\nIn this problem:\n$f^\\prime(x)=\\lim _{h \\rightarrow 0} \\frac{\\frac{2}{(x+h)^{2}}-\\frac{2}{x^{2}}}{h}$",
+                    "seo_html_url": "10-11-find-f-prime-x-first-principles-directly-definition-derivative-10-f-x-frac-2-x-2-tq-a5c2",
+                    "seo_description": "10-11 Find f'(x) from first principles, that is, directly from the definition of a derivative.10. f(x)=2/x2"
+                },
+                "original_image_url": "",
+                "stem": "10-11 Find $f^{\\prime}(x)$ from first principles, that is, directly from the definition of a derivative.\n10. $f(x)=\\frac{2}{x^{2}}$",
+                "status": "valid",
+                "seo_html_url": "10-11-find-f-prime-x-first-principles-directly-definition-derivative-10-f-x-frac-2-x-2-tq-a5c2"
+            },
+            {
+                "id": 3,
+                "question_id": 46992,
+                "recognized_type": "recognized_textbook_question",
+                "category_name": "Math",
+                "subject_name": "Calculus",
+                "seo_info": {
+                    "seo_answer": "Work done formula The work done $W$ by a variable force $f(x)$ in moving a particle from $x=a$ to $x=b$ is given by the formula:\n$W=\\int_{a}^{b} f(x) d x$",
+                    "seo_html_url": "4-variable-force-4-sqrt-x-newtons-moves-particle-along-straight-path-x-meters-origin-calculat-tq-b790",
+                    "seo_description": "4. A variable force of 4 √(x) newtons moves a particle along a straight path when it is x meters from the origin. Calculate the work done in moving the particle from x=4 to x=16."
+                },
+                "original_image_url": "",
+                "stem": "4. A variable force of $4 \\sqrt{x}$ newtons moves a particle along a straight path when it is $x$ meters from the origin. Calculate the work done in moving the particle from $x=4$ to $x=16$.",
+                "status": "valid",
+                "seo_html_url": "4-variable-force-4-sqrt-x-newtons-moves-particle-along-straight-path-x-meters-origin-calculat-tq-b790"
+            },
+            {
+                "id": 4,
+                "question_id": 67592,
+                "recognized_type": "recognized_textbook_question",
+                "category_name": "Math",
+                "subject_name": "Calculus",
+                "seo_info": {
+                    "seo_answer": "Identify the given curve and goal Given curve is $r=\\sin (\\frac\\theta 4)$.\nWe have to find the length of the curve correct to four decimal places using a calculator or computer.",
+                    "seo_html_url": "59-62-use-calculator-computer-find-length-curve-correct-four-decimal-places-necessary-graph--tq-10808",
+                    "seo_description": "59-62 Use a calculator or computer to find the length of the curve correct to four decimal places. If necessary, graph the curve to determine the parameter interval.62. r=sin(θ/ 4)"
+                },
+                "original_image_url": "",
+                "stem": "59-62 Use a calculator or computer to find the length of the curve correct to four decimal places. If necessary, graph the curve to determine the parameter interval.\n62. $r=\\sin (\\theta / 4)$",
+                "status": "valid",
+                "seo_html_url": "59-62-use-calculator-computer-find-length-curve-correct-four-decimal-places-necessary-graph--tq-10808"
+            },
+            {
+                "id": 5,
+                "question_id": 65093,
+                "recognized_type": "recognized_textbook_question",
+                "category_name": "Math",
+                "subject_name": "Calculus",
+                "seo_info": {
+                    "seo_answer": "Define the condition for a statement to be always true or false The statement is always true or always false when the authenticity does not undergoes any sort of change for some particular condition or no counter example arises for the statement.",
+                    "seo_html_url": "determine-whether-statement-true-false-true-explain-false-explain-give-example-disproves-stat-tq-fe45",
+                    "seo_description": "Determine whether the statement is true or false. If it is true, explain why. If it is false, explain why or give an example that disproves the statement.7. Hydrostatic pressure on a dam depends only on the water level at the dam and not on the size of the reservoir created by the dam."
+                },
+                "original_image_url": "",
+                "stem": "Determine whether the statement is true or false. If it is true, explain why. If it is false, explain why or give an example that disproves the statement.\n7. Hydrostatic pressure on a dam depends only on the water level at the dam and not on the size of the reservoir created by the dam.",
+                "status": "valid",
+                "seo_html_url": "determine-whether-statement-true-false-true-explain-false-explain-give-example-disproves-stat-tq-fe45"
+            },
+            {
+                "id": 6,
+                "question_id": 75189,
+                "recognized_type": "recognized_textbook_question",
+                "category_name": "Math",
+                "subject_name": "Calculus",
+                "seo_info": {
+                    "seo_answer": "Consider the iterated double integral Consider the iterated double integral,\n$\\int_{1}^{3} \\int_{1}^{5} \\frac{\\ln y}{x y} d y d x$.",
+                    "seo_html_url": "15-26-calculate-iterated-integral-20-int-1-3-int-1-5-frac-ln-y-x-y-d-y-d-x-tq-125b5",
+                    "seo_description": "15-26 Calculate the iterated integral.20. ∫13 ∫15 lny/x y d y d x"
+                },
+                "original_image_url": "",
+                "stem": "15-26 Calculate the iterated integral.\n20. $\\int_{1}^{3} \\int_{1}^{5} \\frac{\\ln y}{x y} d y d x$",
+                "status": "valid",
+                "seo_html_url": "15-26-calculate-iterated-integral-20-int-1-3-int-1-5-frac-ln-y-x-y-d-y-d-x-tq-125b5"
+            },
+            {
+                "id": 7,
+                "question_id": 73499,
+                "recognized_type": "recognized_textbook_question",
+                "category_name": "Math",
+                "subject_name": "Calculus",
+                "seo_info": {
+                    "seo_answer": "Analyze the given equation It is given that $\\mathbf{r'}(t) = \\mathbf{c} \\times \\mathbf{r}(t)$.",
+                    "seo_html_url": "35-particle-position-function-mathbf-r-t-mathbf-r-prime-t-mathbf-c-times-mathbf-r-t-mathbf-c-tq-11f1b",
+                    "seo_description": "35. A particle has position function r(t). If r'(t)=c ×r(t), where c is a constant vector, describe the path of the particle."
+                },
+                "original_image_url": "",
+                "stem": "35. A particle has position function $\\mathbf{r}(t)$. If $\\mathbf{r}^{\\prime}(t)=\\mathbf{c} \\times \\mathbf{r}(t)$, where $\\mathbf{c}$ is a constant vector, describe the path of the particle.",
+                "status": "valid",
+                "seo_html_url": "35-particle-position-function-mathbf-r-t-mathbf-r-prime-t-mathbf-c-times-mathbf-r-t-mathbf-c-tq-11f1b"
+            },
+            {
+                "id": 8,
+                "question_id": 129781,
+                "recognized_type": "recognized_textbook_question",
+                "category_name": "Math",
+                "subject_name": "Calculus",
+                "seo_info": {
+                    "seo_answer": "Define the function and constraints Define the function and constraints as follows:\n$f(x, y, z)=yz+xy; \\quad xy=1, \\quad y^{2}+z^{2}=1$",
+                    "seo_html_url": "30-33-find-extreme-values-f-subject-constraints-33-f-x-y-z-y-z-x-y-x-y-1-y-2-z-2-1-tq-1faf5",
+                    "seo_description": "30-33 Find the extreme values of f subject to both constraints.33. f(x, y, z)=y z+x y ; x y=1, y2+z2=1 "
+                },
+                "original_image_url": "",
+                "stem": "30-33 Find the extreme values of $f$ subject to both constraints.\n33. $f(x, y, z)=y z+x y ; \\quad x y=1, \\quad y^{2}+z^{2}=1$ ",
+                "status": "valid",
+                "seo_html_url": "30-33-find-extreme-values-f-subject-constraints-33-f-x-y-z-y-z-x-y-x-y-1-y-2-z-2-1-tq-1faf5"
+            },
+            {
+                "id": 9,
+                "question_id": 61270,
+                "recognized_type": "recognized_textbook_question",
+                "category_name": "Math",
+                "subject_name": "Calculus",
+                "seo_info": {
+                    "seo_answer": "Analyze Given the integral $\\int_{1/4}^{\\sqrt{3}/4}\\sqrt{1-4x^2}\\mathrm{d}x$.\nThe expression $\\sqrt{1-4x^2}$ suggests the use of $\\begin{aligned}x=\\frac{1}{2}\\sin\\theta\\end{aligned}$. ",
+                    "seo_html_url": "evaluate-integral-22-int-1-4-sqrt-3-4-sqrt-1-4-x-2-d-x-tq-ef56",
+                    "seo_description": "Evaluate the integral.22. ∫1 / 4√(3) / 4 √(1-4 x2) d x"
+                },
+                "original_image_url": "",
+                "stem": "Evaluate the integral.\n22. $\\int_{1 / 4}^{\\sqrt{3} / 4} \\sqrt{1-4 x^{2}} d x$",
+                "status": "valid",
+                "seo_html_url": "evaluate-integral-22-int-1-4-sqrt-3-4-sqrt-1-4-x-2-d-x-tq-ef56"
+            },
+            {
+                "id": 10,
+                "question_id": 74101,
+                "recognized_type": "recognized_textbook_question",
+                "category_name": "Math",
+                "subject_name": "Calculus",
+                "seo_info": {
+                    "seo_answer": "Consider the function Consider the function $v=\\sin \\left(s^{2}-t^{2}\\right)$. Our objective is to find all the second derivatives.",
+                    "seo_html_url": "47-52-find-second-partial-derivatives-51-v-sin-left-s-2-t-2-right-tq-12175",
+                    "seo_description": "47-52 Find all the second partial derivatives.51. v=sin(s2-t2)"
+                },
+                "original_image_url": "",
+                "stem": "47-52 Find all the second partial derivatives.\n51. $v=\\sin \\left(s^{2}-t^{2}\\right)$",
+                "status": "valid",
+                "seo_html_url": "47-52-find-second-partial-derivatives-51-v-sin-left-s-2-t-2-right-tq-12175"
+            }
+        ]
+    }
+}
+    """
+    result =tutoreva_ai_apis.get_index_data(index_text=data)
+    print(result)
