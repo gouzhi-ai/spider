@@ -269,7 +269,7 @@ class Question_AI_Apis:
                 print(f"Error parsing JSON: {e}")
                 continue
 
-
+        a=1
         print(f"get_one_data success! {qa_data['metadata']['url']}")
         self.logger.info(f"get_one_data success!   QA answer datePublished {qa_data['answer']['datePublished']}")
         return qa_data
