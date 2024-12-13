@@ -7,6 +7,7 @@
 
 import json
 import logging
+import time
 
 import requests
 from bs4 import BeautifulSoup
@@ -180,21 +181,7 @@ class Question_AI_Apis:
                 # print(f"Crawling stopped due to error: {e}")
         return "0"
 
-    # 下载图片
-    # def get_img(self, url: str, proxies: dict = None):
-    #     # print("-----------正在下载图片 ")
-    #     self.logger.info(f'Getting image for {url}')
-    #     # 这是一个图片的url
-    #     requests.session().keep_alive = False
-    #
-    #     response = requests.get(url, proxies=proxies, timeout=10)
-    #     # 获取的文本实际上是图片的二进制文本
-    #     img = response.content
-    #     # 将他拷贝到本地文件 w 写  b 二进制  wb代表写入二进制文本
-    #     # 保存路径
-    #     path = '20241128.jpg'
-    #
-    #     return img
+
 
     # 列表页 url提取
     def get_simple_data(self, index_text):
@@ -223,7 +210,12 @@ class Question_AI_Apis:
         html = details_text
         soup = BeautifulSoup(html, "html.parser")
         qa_data = {}
-
+        answer_content = soup.find('div', class_='expert-answer-content').text.strip()
+        answer_explanation_element = soup.find('div', class_='expert-answer-explanation')
+        if answer_explanation_element:
+            answer_explanation = answer_explanation_element.text.strip()
+        else:
+            answer_explanation = ""
         scripts = soup.find_all('script', {'type': 'application/ld+json'})
         for script in scripts:
             try:
@@ -240,6 +232,8 @@ class Question_AI_Apis:
                             'dateModified': main_entity.get('dateModified', '')
                         },
                         'answer': {
+                            'answer_content': answer_content,
+                            'answer_explanation': answer_explanation,
                             'text': main_entity.get('acceptedAnswer', {}).get('text', ''),
                             'author': main_entity.get('acceptedAnswer', {}).get('author', {}).get('name', ''),
                             'datePublished': main_entity.get('acceptedAnswer', {}).get('datePublished', ''),
@@ -269,53 +263,9 @@ class Question_AI_Apis:
                 print(f"Error parsing JSON: {e}")
                 continue
 
-        a=1
         print(f"get_one_data success! {qa_data['metadata']['url']}")
         self.logger.info(f"get_one_data success!   QA answer datePublished {qa_data['answer']['datePublished']}")
         return qa_data
-
-    # def insert_to_sql(data):
-    #     conn = pymysql.connect(host="localhost", database="MYSQL", user='root',
-    #                            password='123syh123', charset='utf8mb4')
-    #
-    #     cursor = conn.cursor()
-    #     # 达人个人信息表
-    #     insert_sql = ("INSERT INTO questionai VALUES (%s,%s, %s, %s)")
-    #
-    #     try:
-    #         cursor.execute("USE lelekt;")
-    #         cursor.execute(insert_sql, data)
-    #         conn.commit()
-    #         print("数据插入成功！")
-    #     except pymysql.Error as e:
-    #         print(f"数据插入失败：{e}")
-    #     finally:
-    #         cursor.close()
-    #         conn.close()
-
-    # def data_to_csv(data):
-    #     with open('1.csv', 'a', newline='') as file:
-    #         writer = csv.writer(file)
-    #         writer.writerows(data)
-    #
-    #     print("Data has been written to 1.csv")
-    # def download_img(url_info):
-    #     print("-----------正在下载图片 ")
-    #     # 这是一个图片的url
-    #     try:
-    #
-    #         response = requests.get(url)
-    #         # 获取的文本实际上是图片的二进制文本
-    #         img = response.content
-    #         # 将他拷贝到本地文件 w 写  b 二进制  wb代表写入二进制文本
-    #         # 保存路径
-    #         path = '20241128.jpg'
-    #         print(img)
-    #         with open(path, 'wb') as f:
-    #             f.write(img)
-    #     except Exception as ex:
-    #         print("--------出错继续----{}".format(ex))
-    #         pass
 
     def get_all_qa(self, subjectId: str, start_page: int, end_page: int):
         self.logger.info(f"{subject[subjectId]} Starting crawler from page {start_page} to {end_page}")
@@ -327,7 +277,7 @@ class Question_AI_Apis:
         # 状态值：标记是否开始采集详情页
         status = 0
         for page in range(start_page, end_page + 1):
-            index_text = self.get_index(subjectId=subjectId, page=str(page), proxies=self.proxies)
+            index_text = self.get_index(subjectId=subjectId, page=str(page) , proxies=self.proxies)
 
             if index_text == "0":
                 continue
@@ -359,7 +309,7 @@ class Question_AI_Apis:
                 # continue
 
                 details_text = self.get_details(subjectId=str(subjectId), page=str(page),
-                                                url=str(one_simple_data['url']), proxies=self.proxies)
+                                                url=str(one_simple_data['url']) , proxies=self.proxies)
 
                 if details_text == "0":
                     continue
