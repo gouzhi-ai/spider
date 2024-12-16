@@ -21,10 +21,8 @@ subject = {
     '4': 'biology',
     '5': 'english',
     '6': 'physics',
-
     '7': 'chemistry',
     '8': 'geography',
-    '51': 'literature',
 
     '9': 'law',
     '10': 'socialstudies',
@@ -32,6 +30,7 @@ subject = {
     '34': 'business',
     '35': 'health',
     '41': 'medicine',
+    '51': 'literature',
 
     'math': '2',
     'history': '3',
