@@ -299,8 +299,7 @@ class Question_AI_Apis:
                     elif status == 0:
                         status = 1
                         # 更新了
-                        self.logger.info(f"Updated new time:{one_simple_data['datePublished']}")
-                        update_json_time(subject_name, one_simple_data['datePublished'])
+
                 except Exception as e:
                     print(one_simple_data)
                     print(f"Exception:{e}  {initial_time}")
@@ -323,6 +322,10 @@ class Question_AI_Apis:
 
                 all_qa.append(qa_data)
 
+        if status == 1:
+            # 更新了
+            self.logger.info(f"Updated new time:{one_simple_data['datePublished']}")
+            update_json_time(subject_name, one_simple_data['datePublished'])
         return all_qa
 
     # 采集所有科目 1-100页。
