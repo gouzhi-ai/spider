@@ -299,7 +299,7 @@ class Question_AI_Apis:
                     elif status == 0:
                         status = 1
                         # 更新了
-                        self.logger.info("Updated")
+                        self.logger.info(f"Updated new time:{one_simple_data['datePublished']}")
                         update_json_time(subject_name, one_simple_data['datePublished'])
                 except Exception as e:
                     print(one_simple_data)
@@ -320,16 +320,6 @@ class Question_AI_Apis:
                     print(f"Error parsing JSON: {e}")
                     continue
 
-                # img=""
-                # try:
-                #     img = self.get_img(url=str(url),proxies=self.proxies)
-                # except Exception as e:
-                #     print(f"get details: crawling stopped due to error: {e}")
-                #     self.proxy_ip = get_proxy_ip()
-                #     self.proxies = get_proxy(self.proxy_ip)
-                #     img = self.get_img(url=str(url),proxies=self.proxies)
-                #
-                # qa_data["question"]["image_byte"] = img
 
                 all_qa.append(qa_data)
 
@@ -337,13 +327,13 @@ class Question_AI_Apis:
 
     # 采集所有科目 1-100页。
     def get_all_subject(self):
-        subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
+        # subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
         # subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '51']
-        # subject_id_list = ['2']  # test
+        subject_id_list = ['2']  # test
         for subject_id in subject_id_list:
             subject_name = subject[subject_id]
             try:
-                all_qa = self.get_all_qa(subjectId=subject_id, start_page=1, end_page=100)
+                all_qa = self.get_all_qa(subjectId=subject_id, start_page=1, end_page=1)
                 save_list_to_json(all_qa, f"{subject_name}.json")
             except Exception as e:
                 print(f"Error parsing JSON: {e}")

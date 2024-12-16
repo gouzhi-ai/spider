@@ -6,12 +6,12 @@ import random
 import json
 import os
 
-CHECK_URL = 'http://www.baidu.com'
 
 
 def is_network_available():
     """检查网络是否可用"""
     try:
+        CHECK_URL = 'http://www.baidu.com'
         # 发送一个简单的 GET 请求来检查网络
         response = requests.get(CHECK_URL, timeout=5)
         response.raise_for_status()
