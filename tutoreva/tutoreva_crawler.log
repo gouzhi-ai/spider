@@ -1,0 +1,17 @@
+2024-12-16 15:23:49,122 - INFO - Getting details for {'recognized_type_encoded': 'tq', 'create_source': 'seo', 'question_id_encoded': '9af4', '$t': '1734333829122'}  https://www.tutoreva.com/study-resources/
+2024-12-16 15:23:50,362 - INFO - Getting details for {'recognized_type_encoded': 'tq', 'create_source': 'seo', 'question_id_encoded': '9af4', '$t': '1734333829122'} success
+2024-12-16 15:44:40,069 - INFO - Getting details for {'recognized_type_encoded': 'tq', 'create_source': 'seo', 'question_id_encoded': '9af4', '$t': '1734335080069'}  https://www.tutoreva.com/study-resources/
+2024-12-16 15:44:41,310 - INFO - Getting details for {'recognized_type_encoded': 'tq', 'create_source': 'seo', 'question_id_encoded': '9af4', '$t': '1734335080069'} success
+2024-12-16 15:46:30,719 - INFO - get_details_data success!   QA answer datePublished 2
+2024-12-16 15:46:42,180 - INFO - get_details_data success!   QA answer datePublished 2
+2024-12-16 15:47:47,934 - INFO - get_details_data success!   QA answer datePublished 2
+2024-12-16 15:54:41,760 - INFO - get_details_data success!   QA answer datePublished 2
+2024-12-16 15:55:15,027 - INFO - get_details_data success!   QA answer datePublished 2
+2024-12-16 16:01:01,801 - INFO - get_details_data success!   QA answer datePublished 2
+2024-12-16 16:43:53,058 - INFO - get_details_data success!   QA answer datePublished 2
+2024-12-16 16:49:09,766 - INFO - get_details_data success!   QA answer datePublished 2
+2024-12-16 17:39:47,564 - INFO - get_details_data success!   QA answer datePublished 2
+2024-12-16 17:41:39,877 - INFO - get_details_data success!   QA answer datePublished 2
+2024-12-16 17:46:12,154 - INFO - Getting details for {'recognized_type_encoded': 'tq', 'create_source': 'seo', 'question_id_encoded': '9af4', '$t': '1734342372154'}  https://www.tutoreva.com/study-resources/
+2024-12-16 17:46:13,554 - INFO - Getting details for {'recognized_type_encoded': 'tq', 'create_source': 'seo', 'question_id_encoded': '9af4', '$t': '1734342372154'} success
+2024-12-16 17:46:13,555 - INFO - get_details_data success!   QA answer datePublished 2

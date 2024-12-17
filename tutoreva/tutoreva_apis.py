@@ -46,7 +46,6 @@ subject = {
 }
 
 
-
 class Tutoreva_AI_Apis:
     def __init__(self):
         self.base_url = "https://www.tutoreva.com/study-resources/"
@@ -56,13 +55,14 @@ class Tutoreva_AI_Apis:
 
         self.category_name = ""
         self.subject_name = ""
+        self.token = cookies[0]["token"]
 
     def setup_logging(self):
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s',
             handlers=[
-                logging.FileHandler('crawler.log'),
+                logging.FileHandler('tutoreva_crawler.log'),
                 logging.StreamHandler()
             ]
         )
@@ -118,6 +118,7 @@ class Tutoreva_AI_Apis:
                 #     self.proxies = get_proxy(self.proxy_ip)
             except Exception as e:
                 self.logger.error(f"Crawling stopped due to error: {e}")
+                self.logger.error(f"Get error :{str(params)}")
                 self.proxy_ip = get_proxy_ip()
                 self.proxies = get_proxy(self.proxy_ip)
                 # print(f"Crawling stopped due to error: {e}")
@@ -175,6 +176,7 @@ class Tutoreva_AI_Apis:
                 #     self.proxies = get_proxy(self.proxy_ip)
             except Exception as e:
                 self.logger.error(f"Crawling stopped due to error: {e}")
+                self.logger.error(f"Get error :{str(params)}")
                 self.proxy_ip = get_proxy_ip()
                 self.proxies = get_proxy(self.proxy_ip)
                 # print(f"Crawling stopped due to error: {e}")
@@ -184,9 +186,9 @@ class Tutoreva_AI_Apis:
     def get_index_data(self, index_text):
         print("get_index_data start")
         re_text = str(index_text)
-        re_text = json.loads(re_text,strict=False)
+        re_text = json.loads(re_text, strict=False)
         re_text = re_text.get("data")
-        base_data={
+        base_data = {
             "count": re_text.get("count"),
             "page": re_text.get("page"),
             "pages": re_text.get("pages"),
@@ -203,8 +205,8 @@ class Tutoreva_AI_Apis:
                 "category_name": i.get("category_name"),
                 "subject_name": i.get("subject_name"),
                 "seo_html_url": i.get("seo_html_url"),
-                "recognized_type_encoded":"",
-                "question_id_encoded":""
+                "recognized_type_encoded": "",
+                "question_id_encoded": ""
             }
             string_list = one_simple_data["seo_html_url"].split('-')[-2:]
             one_simple_data["recognized_type_encoded"] = string_list[0]
@@ -213,145 +215,161 @@ class Tutoreva_AI_Apis:
             one_page_index_data.append(one_simple_data)
 
         print("get_index_data success! ")
-        return [base_data,one_page_index_data]
+        return [base_data, one_page_index_data]
 
     # 详情页 问题、图片、答案、解释
     def get_details_data(self, details_text):
-        print("get_one_data start")
-        html = details_text
-        soup = BeautifulSoup(html, "html.parser")
+        print("get_details_data start")
         qa_data = {}
+        try:
+            data = json.loads(details_text, strict=False)
+            if data.get('code') == 200:
+                print("datasyh")
+                data = data.get('data')
+                result = data.get('result')
+                main_entity = result.get('recognized_textbook_question')
 
-        scripts = soup.find_all('script', {'type': 'application/ld+json'})
-        for script in scripts:
-            try:
-                data = json.loads(script.string)
-                if data.get('@type') == 'QAPage' and 'mainEntity' in data:
-                    main_entity = data['mainEntity']
-                    qa_data = {
-                        'question': {
-                            'text': main_entity.get('text', ''),
-                            'image': main_entity.get('image', ''),
-                            # 'image_byte': 1,
-                            'author': main_entity.get('author', {}).get('name', ''),
-                            'datePublished': main_entity.get('datePublished', ''),
-                            'dateModified': main_entity.get('dateModified', '')
-                        },
-                        'answer': {
-                            'text': main_entity.get('acceptedAnswer', {}).get('text', ''),
-                            'author': main_entity.get('acceptedAnswer', {}).get('author', {}).get('name', ''),
-                            'datePublished': main_entity.get('acceptedAnswer', {}).get('datePublished', ''),
-                            'upvoteCount': main_entity.get('acceptedAnswer', {}).get('upvoteCount', 0)
-                        },
-                        'metadata': {
-                            'answerCount': main_entity.get('answerCount', 0),
-                            'upvoteCount': main_entity.get('upvoteCount', 0),
-                            'url': main_entity.get('author', {}).get('url', '')
+                question = main_entity.get('stem', {})
+                answer = main_entity.get('answer_subjective', {})
+                explain = main_entity.get('steps', {})
+                explain_list = []
+                for i in explain:
+                    text = i.get('text', {})
+                    one_explain = {
+                        'explain_id': i.get('id', ''),
+                        'question_id': i.get('question_id', ''),
+                        'name': i.get('name', ''),
+                        'text': {
+                            'text': text.get('text', ''),
+                            'image_list': text.get('image_list', []),
+                            'mix_list': text.get('mix_list', [])
                         }
                     }
-                    if "Explanation" in str(main_entity):  # QAPage 里面已经有了
-                        pass
-                    elif "Explanation" not in str(html):  # QAPage  里面没有  这个题目没题解
-                        pass
-                    else:  # QAPage  里面没有,  要在div里面找，，，，这是最特殊情况。
-                        the_list = soup.find('div', {'class': 'answerScroll'})
-                        if the_list:
-                            explain = the_list.get_text(strip=True, separator='\n')
-                            # Explanation
-                            qa_data['answer']['text'] = qa_data['answer']['text'] + " Explanation " + explain
-                        else:
-                            print("No element found with class 'answerScroll'.")
+                    explain_list.append(one_explain)
+                qa_data = {
+                    'question': {
+                        'text': question.get('text', ''),
+                        'image_list': question.get('image_list', []),
+                        'mix_list': question.get('mix_list', [])
+                    },
+                    'answer': {
+                        'text': answer.get('text', ''),
+                        'image_list': answer.get('image_list', []),
+                        'mix_list': answer.get('mix_list', [])
+                    },
+                    'explain': explain_list,
+                    'metadata': {
+                        'seo_category_name': result.get('seo_category_name', ''),
+                        'seo_subject_name': result.get('seo_subject_name', ''),
+                        'subject': result.get('subject', ''),
+                        'seo_html_url': result.get('seo_html_url', ''),
+                        'url': f"https://www.tutoreva.com/study-resources/{result.get('subject', '')}-homework-help/{result.get('seo_html_url', '')}",
+                        'id': main_entity.get('id', ''),
+                    }
+                }
 
-                    # json_data_list.append(qa_data)
-            except json.JSONDecodeError as e:
-                print(f"Error parsing JSON: {e}")
-                continue
+                # main_entity = data['mainEntity']
+                # qa_data = {
+                #     'question': {
+                #         'text': main_entity.get('text', ''),
+                #         'image': main_entity.get('image', ''),
+                #         # 'image_byte': 1,
+                #         'author': main_entity.get('author', {}).get('name', ''),
+                #         'datePublished': main_entity.get('datePublished', ''),
+                #         'dateModified': main_entity.get('dateModified', '')
+                #     },
+                #     'answer': {
+                #         'text': main_entity.get('acceptedAnswer', {}).get('text', ''),
+                #         'author': main_entity.get('acceptedAnswer', {}).get('author', {}).get('name', ''),
+                #         'datePublished': main_entity.get('acceptedAnswer', {}).get('datePublished', ''),
+                #         'upvoteCount': main_entity.get('acceptedAnswer', {}).get('upvoteCount', 0)
+                #     },
+                #     'metadata': {
+                #         'answerCount': main_entity.get('answerCount', 0),
+                #         'upvoteCount': main_entity.get('upvoteCount', 0),
+                #         'url': main_entity.get('author', {}).get('url', '')
+                #     }
+                # }
 
-        print(f"get_one_data success! {qa_data['metadata']['url']}")
-        self.logger.info(f"get_one_data success!   QA answer datePublished {qa_data['answer']['datePublished']}")
+        except json.JSONDecodeError as e:
+            print(f"Error parsing JSON: {e}")
+
+        print(f"get_details_data success! {1}")
+        self.logger.info(f"get_details_data success!   QA answer datePublished {2}")
         return qa_data
 
-    def get_all_qa(self, subjectId: str, start_page: int, end_page: int):
-        self.logger.info(f"{subject[subjectId]} Starting crawler from page {start_page} to {end_page}")
-        subject_name = subject[subjectId]
+    def get_all_qa(self, category_name: str, subject_name: str):
+        self.logger.info(f"{category_name} {subject_name} Starting crawler ")
         all_qa = []
-        # 记录json文件里记录的的原始时间
-        initial_time = get_json_time(subject_name)
+
         # 状态值：标记是否开始采集详情页
         status = 0
-        for page in range(start_page, end_page + 1):
-            index_text = self.get_index(subjectId=subjectId, page=str(page), proxies=self.proxies)
+        for page in range(1, 10000 + 1):
+
+            if not is_network_available():
+                self.logger.error(
+                    f"Network is not available.  category_name= {category_name}, subject_name={subject_name}, page={page}")
+                continue
+
+            index_text = self.get_index(page=str(page), category_name=self.category_name,
+                                        subject_name=self.subject_name, token=self.token)  # , proxies=self.proxies)
 
             if index_text == "0":
                 continue
-            if not is_network_available():
-                self.logger.error(f"Network is not available. subject_name={subject_name}, page={page}")
-                continue
 
-            one_page_simple_data = self.get_index_data(index_text)
-
-            for one_simple_data in one_page_simple_data:
-
-                try:
-                    if compare_time(one_simple_data['datePublished'], initial_time):
-                        # 没更新
-                        self.logger.info(
-                            f"Not updated"
-                            f"datePublished:{one_simple_data['datePublished']} initial_time：{initial_time}  "
-                            f"result： {compare_time(one_simple_data['datePublished'], initial_time)}")
-                        return all_qa
-                    elif status == 0:
-                        status = 1
-                        # 更新了
-                        self.logger.info(
-                            f"Updated  one_simple_data['datePublished']:{one_simple_data['datePublished']}, initial_time:{initial_time}")
-                        update_json_time(subject_name, one_simple_data['datePublished'])
-                except Exception as e:
-                    print(one_simple_data)
-                    print(f"Exception:{e}  {initial_time}")
-                    continue
-                # continue
-
-                details_text = self.get_details(subjectId=str(subjectId), page=str(page),
-                                                url=str(one_simple_data['url']), proxies=self.proxies)
+            one_index_data = self.get_index_data(index_text)
+            pages = int(one_index_data[0]["pages"])
+            one_index_data = one_index_data[1]
+            for one_details_data in one_index_data:
+                # 判断是否 更新
+                # 代码
+                # todo
+                recognized_type_encoded = one_details_data["recognized_type_encoded"]
+                question_id_encoded = one_details_data["question_id_encoded"]
+                details_text = self.get_details(recognized_type_encoded=recognized_type_encoded,
+                                                question_id_encoded=question_id_encoded,
+                                                token=self.token)  # , proxies=self.proxies)
 
                 if details_text == "0":
                     continue
                 try:
                     qa_data = self.get_details_data(details_text)
-                    qa_data['question']['text'] = one_simple_data['contentLatex']
-                    qa_data['question']['image'] = one_simple_data['imageURL']
                 except Exception as e:
-                    print(f"Error parsing JSON: {e}")
+                    print(
+                        f"Error parsing JSON: {e},category_name= {category_name}, subject_name={subject_name}, "
+                        f"page={page},recognized_type_encoded={recognized_type_encoded},question_id_encoded= {question_id_encoded},")
                     continue
 
-                # img=""
-                # try:
-                #     img = self.get_img(url=str(url),proxies=self.proxies)
-                # except Exception as e:
-                #     print(f"get details: crawling stopped due to error: {e}")
-                #     self.proxy_ip = get_proxy_ip()
-                #     self.proxies = get_proxy(self.proxy_ip)
-                #     img = self.get_img(url=str(url),proxies=self.proxies)
-                #
-                # qa_data["question"]["image_byte"] = img
-
                 all_qa.append(qa_data)
-
+                time.sleep(10)
+            time.sleep(10)
+            if int(page) == pages: break
         return all_qa
 
-    # 采集所有科目 1-100页。
+    # 采集所有科目
     def get_all_subject(self):
+        for category_name in subject:
+            self.category_name = category_name
+            for subject_name in category_name:
+                self.subject_name = subject_name
 
-        for subject_id in subject:
-            subject_name = subject[subject_id]
-            try:
-                all_qa = self.get_all_qa()
-                save_list_to_json(all_qa, f"{subject_name}.json")
-            except Exception as e:
-                print(f"Error parsing JSON: {e}")
-                self.proxy_ip = get_proxy_ip()
-                self.proxies = get_proxy(self.proxy_ip)
+                try:
+                    all_qa = self.get_all_qa(category_name=category_name, subject_name=subject_name)
+                    save_list_to_json(all_qa, f"{category_name}_{subject_name}.json")
+                except Exception as e:
+                    self.logger.error(f"Error parsing JSON: {e}")
+                    self.proxy_ip = get_proxy_ip()
+                    self.proxies = get_proxy(self.proxy_ip)
+
+        # for subject_id in subject:
+        #     subject_name = subject[subject_id]
+        #     try:
+        #         all_qa = self.get_all_qa()
+        #         save_list_to_json(all_qa, f"{subject_name}.json")
+        #     except Exception as e:
+        #         self.logger.error(f"Error parsing JSON: {e}")
+        #         self.proxy_ip = get_proxy_ip()
+        #         self.proxies = get_proxy(self.proxy_ip)
 
 
 def save_list_to_json(data_list, output_file):
@@ -373,7 +391,9 @@ if __name__ == '__main__':
     # scheduler_task_pre()
     print("start!")
     tutoreva_ai_apis = Tutoreva_AI_Apis()
-    data=tutoreva_ai_apis.get_index(page="1",category_name="math",subject_name="Calculus",token=cookies[0]["token"])
-    data=data.replace("\\", "\\\\")
-    result =tutoreva_ai_apis.get_index_data(index_text=data)
+    data = tutoreva_ai_apis.get_details(recognized_type_encoded="tq", question_id_encoded="9af4",
+                                        token=cookies[0]["token"])
+
+    data = data.replace("\\", "\\\\")
+    result = tutoreva_ai_apis.get_details_data(details_text=data)
     print(result)

@@ -28,6 +28,7 @@ subject = {
     '10': 'socialstudies',
     '11': 'technology',
     '34': 'business',
+
     '35': 'health',
     '41': 'medicine',
     '51': 'literature',
@@ -180,8 +181,6 @@ class Question_AI_Apis:
                 # print(f"Crawling stopped due to error: {e}")
         return "0"
 
-
-
     # 列表页 url提取
     def get_simple_data(self, index_text):
         print("get_urls start")
@@ -276,12 +275,13 @@ class Question_AI_Apis:
         # 状态值：标记是否开始采集详情页
         status = 0
         for page in range(start_page, end_page + 1):
-            index_text = self.get_index(subjectId=subjectId, page=str(page) , proxies=self.proxies)
-
-            if index_text == "0":
-                continue
             if not is_network_available():
                 self.logger.error(f"Network is not available. subject_name={subject_name}, page={page}")
+                continue
+
+            index_text = self.get_index(subjectId=subjectId, page=str(page), proxies=self.proxies)
+
+            if index_text == "0":
                 continue
 
             one_page_simple_data = self.get_simple_data(index_text)
@@ -307,7 +307,7 @@ class Question_AI_Apis:
                 # continue
 
                 details_text = self.get_details(subjectId=str(subjectId), page=str(page),
-                                                url=str(one_simple_data['url']) , proxies=self.proxies)
+                                                url=str(one_simple_data['url']), proxies=self.proxies)
 
                 if details_text == "0":
                     continue
@@ -319,7 +319,6 @@ class Question_AI_Apis:
                     print(f"Error parsing JSON: {e}")
                     continue
 
-
                 all_qa.append(qa_data)
 
         if status == 1:
@@ -330,13 +329,13 @@ class Question_AI_Apis:
 
     # 采集所有科目 1-100页。
     def get_all_subject(self):
-        # subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
+        subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
+        # subject_id_list = ['2']  # test
         # subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '51']
-        subject_id_list = ['2']  # test
         for subject_id in subject_id_list:
             subject_name = subject[subject_id]
             try:
-                all_qa = self.get_all_qa(subjectId=subject_id, start_page=1, end_page=1)
+                all_qa = self.get_all_qa(subjectId=subject_id, start_page=1, end_page=100)
                 save_list_to_json(all_qa, f"{subject_name}.json")
             except Exception as e:
                 print(f"Error parsing JSON: {e}")
