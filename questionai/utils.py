@@ -7,6 +7,10 @@ import json
 import os
 
 
+def sleep_time():
+    sleep_time = random.uniform(5, 10)
+    time.sleep(sleep_time)
+
 
 def is_network_available():
     """检查网络是否可用"""

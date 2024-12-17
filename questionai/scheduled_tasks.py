@@ -17,7 +17,7 @@ scheduler = BlockingScheduler()
 scheduler.add_job(
     func=a,
     trigger=CronTrigger(
-        hour=1,
+        hour=6,
         minute=10,
         timezone=timezone('Asia/Shanghai')
     ),
