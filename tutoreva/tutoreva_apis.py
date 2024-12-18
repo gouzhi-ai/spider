@@ -327,10 +327,10 @@ class Tutoreva_AI_Apis:
 
             for subject_name in subject[category_name]:
 
-                if category_name == "physics": continue
-                if category_name == "math": continue
-                if subject_name == "Chemical Principle": continue
-                if subject_name == "Molecular Biology of the Cell": continue
+                # if category_name == "physics": continue
+                # if category_name == "math": continue
+                # if subject_name == "Chemical Principle": continue
+                # if subject_name == "Molecular Biology of the Cell": continue
 
                 self.subject_name = subject_name
                 self.logger.info(f"{category_name} {subject_name} Starting crawler ")
