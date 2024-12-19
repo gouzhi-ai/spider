@@ -13,7 +13,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from proxy import get_proxy, get_proxy_ip
-from utils import compare_time, get_datetime, is_network_available, get_json_time, update_json_time
+from utils import compare_time, get_datetime, is_network_available, get_json_time, update_json_time, get_13_timestamp_ms
 
 subject = {
     '2': 'math',
@@ -77,12 +77,7 @@ class Question_AI_Apis:
             "accept": "*/*",
             "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
             "cache-control": "no-cache",
-            "cookie": "QUESTION_AI_PCUID=4b7j8pjsgnky2bx13ikm247sc41b11_1732504216; "
-                      "QUESTION_AI_UUID=137d57b0-eb38-4b8b-93c9-2b9945415ca7;"
-                      " webcuid=31d62202f1b18bb6863b2950be98d233;"
-                      " _ga=GA1.1.665193756.1732506073;"
-                      " questionConfigPC=; _clck=100kn9t%7C2%7Cfr6%7C0%7C1790; "
-                      "_clsk=1pewkzx%7C1732519712016%7C1%7C1%7Ci.clarity.ms%2Fcollect; _ga_WTWVD7G0P1=GS1.1.1732515476.3.1.1732523463.0.0.0",
+            "cookie": "QUESTION_AI_PCUID=42u0uq459wsfyeu7rhndy53lwv97d2_1732600371; QUESTION_AI_UUID=4c1b5276-c523-48f7-875b-ba52ff34995e; _ga=GA1.1.270572433.1732600376; webcuid=21219abe634e3f2f283128ffd797c67b; _ga_WTWVD7G0P1=GS1.1.1734502577.12.1.1734502587.0.0.0",
             "pragma": "no-cache",
             "priority": "u=1, i",
             "referer": f"https://www.questionai.com/subject/{subject[subjectId]}/{page}",
@@ -103,7 +98,7 @@ class Question_AI_Apis:
             "reqFrom": "browser",
             # "release": "2024.1125.110951",
             "lang": "en",
-            "t": "1732523469268",
+            "t": f"{get_13_timestamp_ms()}",
             "appId": "aihomework",
             "subjectId": f"{subjectId}",
             "pageNum": f"{page}",
@@ -125,7 +120,6 @@ class Question_AI_Apis:
                 self.logger.error(f"Crawling stopped due to error: {e}")
                 self.proxy_ip = get_proxy_ip()
                 self.proxies = get_proxy(self.proxy_ip)
-                # print(f"Crawling stopped due to error: {e}")
         return "0"
 
     # 详情页
@@ -157,7 +151,7 @@ class Question_AI_Apis:
             "questionConfigPC": "",
             "webcuid": "21219abe634e3f2f283128ffd797c67b",
             "_ga": "GA1.1.270572433.1732600376",
-            "_ga_WTWVD7G0P1": "GS1.1.1732604412.2.1.1732606465.0.0.0"
+            "_ga_WTWVD7G0P1": "GS1.1.1734502577.12.1.1734502594.0.0.0"
         }
         # url = "https://www.questionai.com/questions-tUTMuWhieW00/grade-point-averages-gpa-12-randomly-selected-college"
 
@@ -178,7 +172,6 @@ class Question_AI_Apis:
                 self.logger.error(f"Crawling stopped due to error: {e}")
                 self.proxy_ip = get_proxy_ip()
                 self.proxies = get_proxy(self.proxy_ip)
-                # print(f"Crawling stopped due to error: {e}")
         return "0"
 
     # 列表页 url提取
@@ -257,8 +250,9 @@ class Question_AI_Apis:
                             print("No element found with class 'answerScroll'.")
 
                     # json_data_list.append(qa_data)
-            except json.JSONDecodeError as e:
-                print(f"Error parsing JSON: {e}")
+            except Exception as e:
+                self.logger.error(f"get_one_data: Error parsing JSON: {e}")
+
                 continue
 
         print(f"get_one_data success! {qa_data['metadata']['url']}")
@@ -316,7 +310,7 @@ class Question_AI_Apis:
                     qa_data['question']['text'] = one_simple_data['contentLatex']
                     qa_data['question']['image'] = one_simple_data['imageURL']
                 except Exception as e:
-                    print(f"Error parsing JSON: {e}")
+                    self.logger.error(f"get_all_qa: Error parsing JSON: {e}")
                     continue
 
                 all_qa.append(qa_data)
@@ -329,16 +323,18 @@ class Question_AI_Apis:
 
     # 采集所有科目 1-100页。
     def get_all_subject(self):
-        subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
+        # subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
         # subject_id_list = ['2']  # test
-        # subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '51']
+        subject_id_list = ['8', '9', '10', '11', '34', '35', '41', '51']
         for subject_id in subject_id_list:
             subject_name = subject[subject_id]
             try:
                 all_qa = self.get_all_qa(subjectId=subject_id, start_page=1, end_page=100)
                 save_list_to_json(all_qa, f"{subject_name}.json")
             except Exception as e:
-                print(f"Error parsing JSON: {e}")
+                self.logger.error(f"get_all_subject: Error parsing JSON: {e}")
+                #todo
+                time.sleep(600)
                 self.proxy_ip = get_proxy_ip()
                 self.proxies = get_proxy(self.proxy_ip)
 
