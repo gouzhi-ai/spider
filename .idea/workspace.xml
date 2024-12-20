@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64cf967e-c467-4fd7-8954-1f45fc6bb54a" name="更改" comment="2024年12月18日 09点15分">
-      <change afterPath="$PROJECT_DIR$/gauth/test1.py" afterDir="false" />
+    <list default="true" id="64cf967e-c467-4fd7-8954-1f45fc6bb54a" name="更改" comment="2024年12月19日 09点17分">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/questionai/crawler.log" beforeDir="false" afterPath="$PROJECT_DIR$/questionai/crawler.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/questionai/question_ai_apis2.py" beforeDir="false" afterPath="$PROJECT_DIR$/questionai/question_ai_apis2.py" afterDir="false" />
@@ -58,7 +57,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Work/PyCharmProjects/pythonProject1126",
+    "last_opened_file_path": "D:/Work/PyCharmProjects/leleSpider",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -67,7 +66,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.test1">
+  <component name="RunManager" selected="Python.question_ai_apis2">
     <configuration name="proxy" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject1126" />
       <option name="ENV_FILES" value="" />
@@ -185,8 +184,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test1" />
         <item itemvalue="Python.question_ai_apis2" />
+        <item itemvalue="Python.test1" />
         <item itemvalue="Python.scheduled_tasks" />
         <item itemvalue="Python.tutoreva_apis" />
         <item itemvalue="Python.proxy" />
@@ -214,7 +213,8 @@
       <workItem from="1734057116983" duration="22000" />
       <workItem from="1734057337733" duration="71525000" />
       <workItem from="1734483500037" duration="896000" />
-      <workItem from="1734484427387" duration="16472000" />
+      <workItem from="1734484427387" duration="22415000" />
+      <workItem from="1734656947898" duration="2270000" />
     </task>
     <task id="LOCAL-00001" summary="苏玉恒 2024年12月13日15:15:24">
       <option name="closed" value="true" />
@@ -296,7 +296,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734484559335</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="2024年12月19日 09点17分">
+      <option name="closed" value="true" />
+      <created>1734571152720</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1734571152720</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,11 +330,12 @@
     <MESSAGE value="2024年12月17日09:10:16" />
     <MESSAGE value="2024年12月17日 17点54分" />
     <MESSAGE value="2024年12月18日 09点15分" />
-    <option name="LAST_COMMIT_MESSAGE" value="2024年12月18日 09点15分" />
+    <MESSAGE value="2024年12月19日 09点17分" />
+    <option name="LAST_COMMIT_MESSAGE" value="2024年12月19日 09点17分" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject1126$1.coverage" NAME="1 覆盖结果" MODIFIED="1734055542954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/pythonProject1126$question_ai_apis2.coverage" NAME="question_ai_apis2 覆盖结果" MODIFIED="1734511530699" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/questionai" />
+    <SUITE FILE_PATH="coverage/pythonProject1126$question_ai_apis2.coverage" NAME="question_ai_apis2 覆盖结果" MODIFIED="1734571281743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/questionai" />
     <SUITE FILE_PATH="coverage/pythonProject1126$tutoreva_apis.coverage" NAME="tutoreva_apis 覆盖结果" MODIFIED="1734421183264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tutoreva" />
     <SUITE FILE_PATH="coverage/pythonProject1126$scheduled_tasks.coverage" NAME="scheduled_tasks 覆盖结果" MODIFIED="1734429242712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/questionai" />
     <SUITE FILE_PATH="coverage/pythonProject1126$proxy.coverage" NAME="proxy 覆盖结果" MODIFIED="1734314461584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/questionai" />

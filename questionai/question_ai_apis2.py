@@ -323,9 +323,9 @@ class Question_AI_Apis:
 
     # 采集所有科目 1-100页。
     def get_all_subject(self):
-        # subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
+        subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
         # subject_id_list = ['2']  # test
-        subject_id_list = ['8', '9', '10', '11', '34', '35', '41', '51']
+        # subject_id_list = ['8', '9', '10', '11', '34', '35', '41', '51']
         for subject_id in subject_id_list:
             subject_name = subject[subject_id]
             try:
