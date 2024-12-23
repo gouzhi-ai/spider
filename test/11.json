@@ -1,0 +1,34 @@
+[
+    "{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+  {
+    "@type": "Question",
+    "name": "What is 169^{-1/2} ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The solution to 169^{-1/2} is 1/13"
+    }
+  }]
+}
+",
+    "{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Popular Problems",
+    "item": "https://www.symbolab.com/popular-algebra"
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "name": "problem",
+    "item": "https://www.symbolab.com/popular-algebra/algebra-106"
+  }]
+}
+"
+]
