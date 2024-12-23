@@ -1,12 +1,10 @@
-
 from bs4 import BeautifulSoup
 import json
 import requests
 
+response = requests.get("https://www.symbolab.com/popular-statistics/statistics-0")
 
-response =requests.get("https://www.symbolab.com/popular-algebra/algebra-106")
-
-html_content=response.text
+html_content = response.text
 # 解析 HTML
 soup = BeautifulSoup(html_content, 'html.parser')
 
@@ -19,19 +17,42 @@ if script_tag:
     print("提取的 JSON 数据:", script_tag_string)
 
     try:
+        one_qa_data = {
+            'question': '',
+            'answer': '',
+            'explain': [],
+            'url': '',
+            'subject':''
+        }
         json_data = json.loads(script_tag_string, strict=False)
+        data = []
+        for i in json_data:
+            if isinstance(i, str):
+                data.append(i)
+        json_data = data
+        step = 0
+        jump = 0
+        one_qa_data['url'] = response.url
+        one_qa_data['subject'] = one_qa_data['url'].split('/')[-1].split('-')[0]
+        for i in range(len(json_data)):
+            print(json_data[i])
+            if jump == 1:
+                jump = 0
+                continue
+            if 'Solver' in json_data[i]:
+                jump = 1
+            if '/practice/' in json_data[i] or 'Solver2' in json_data[i] or one_qa_data['subject'].lower() == json_data[i]:
+                break
+            if 'step' == json_data[i]:
+                step = 1
+                continue
+            if step == 1:
+                one_qa_data['explain'].append(json_data[i])
 
-        # 提取问题、答案和步骤
-        problem_latex = json_data[0][1]  # 问题的 LaTeX 格式
-        solution_latex = json_data[1][1]  # 答案的 LaTeX 格式
-        steps_latex = [step[1] for step in json_data[2][1]]  # 步骤的 LaTeX 格式
-
-        # 输出结果
-        print("问题的 LaTeX 格式:", problem_latex)
-        print("答案的 LaTeX 格式:", solution_latex)
-        print("步骤的 LaTeX 格式:")
-        for step in steps_latex:
-            print(step)
+            if 'context' in json_data[i] and 'acceptedAnswer' in json_data[i]:
+                one_qa_data['question'] = json_data[i - 2]
+                one_qa_data['answer'] = json_data[i + 2]
+        print(one_qa_data)
     except json.JSONDecodeError as e:
         print("JSON 解析错误:", e)
 else:

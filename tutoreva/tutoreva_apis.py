@@ -185,7 +185,7 @@ class Tutoreva_AI_Apis:
         base_data = {
             "count": re_text.get("count"),
             "page": re_text.get("page"),
-            "pages": re_text.get("pages"),
+            "links": re_text.get("links"),
             "pagesize": re_text.get("pagesize"),
         }
         index_list = re_text.get("lists")
@@ -292,7 +292,7 @@ class Tutoreva_AI_Apis:
                 continue
 
             one_index_data = self.get_index_data(index_text)
-            pages = int(one_index_data[0]["pages"])
+            pages = int(one_index_data[0]["links"])
             self.logger.info(f"one_index_data[0]:{one_index_data[0]}")
             one_index_data = one_index_data[1]
             for one_details_data in one_index_data:

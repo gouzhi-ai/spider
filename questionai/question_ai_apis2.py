@@ -267,7 +267,7 @@ class Question_AI_Apis:
         initial_time = get_json_time(subject_name)
         self.logger.info(f"initial_time: {initial_time}")
         # 状态值：标记是否开始采集详情页
-        status = 0
+        new_time = 0
         for page in range(start_page, end_page + 1):
             if not is_network_available():
                 self.logger.error(f"Network is not available. subject_name={subject_name}, page={page}")
@@ -290,13 +290,13 @@ class Question_AI_Apis:
                             f"datePublished:{one_simple_data['datePublished']} initial_time：{initial_time}  "
                             f"result： {compare_time(one_simple_data['datePublished'], initial_time)}")
                         return all_qa
-                    elif status == 0:
-                        status = 1
+                    elif new_time == 0:
+                        new_time = one_simple_data['datePublished']
                         # 更新了
 
                 except Exception as e:
                     print(one_simple_data)
-                    print(f"Exception:{e}  {initial_time}")
+                    self.logger.error(f"Exception:{e}  {initial_time}")
                     continue
                 # continue
 
@@ -315,10 +315,10 @@ class Question_AI_Apis:
 
                 all_qa.append(qa_data)
 
-        if status == 1:
+        if new_time != 0:
             # 更新了
-            self.logger.info(f"Updated new time:{one_simple_data['datePublished']}")
-            update_json_time(subject_name, one_simple_data['datePublished'])
+            self.logger.info(f"Updated new time:{new_time}")
+            update_json_time(subject_name, new_time)
         return all_qa
 
     # 采集所有科目 1-100页。
