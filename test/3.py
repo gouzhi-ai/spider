@@ -20,18 +20,31 @@ if script_tag:
 
     try:
         json_data = json.loads(script_tag_string, strict=False)
-
-        # 提取问题、答案和步骤
-        problem_latex = json_data[0][1]  # 问题的 LaTeX 格式
-        solution_latex = json_data[1][1]  # 答案的 LaTeX 格式
-        steps_latex = [step[1] for step in json_data[2][1]]  # 步骤的 LaTeX 格式
+        data=[]
+        for i in json_data:
+            if isinstance(i,str):
+                data.append(i)
+        print(data)
+        # 提取所需的内容
+        # simplify_expression = data[0][-2]  # "simplify $$169^{-\\frac{1}{2}}$$"
+        # solution_expression = data[0][-1]  # "\\frac{1}{13}"
 
         # 输出结果
-        print("问题的 LaTeX 格式:", problem_latex)
-        print("答案的 LaTeX 格式:", solution_latex)
-        print("步骤的 LaTeX 格式:")
-        for step in steps_latex:
-            print(step)
+        # print("提取的表达式:", simplify_expression)
+        # print("提取的解:", solution_expression)
+
+
+        # 提取问题、答案和步骤
+        # problem_latex = json_data[0][1]  # 问题的 LaTeX 格式
+        # solution_latex = json_data[1][1]  # 答案的 LaTeX 格式
+        # steps_latex = [step[1] for step in json_data[2][1]]  # 步骤的 LaTeX 格式
+
+        # 输出结果
+        # print("问题的 LaTeX 格式:", problem_latex)
+        # print("答案的 LaTeX 格式:", solution_latex)
+        # print("步骤的 LaTeX 格式:")
+        # for step in steps_latex:
+        #     print(step)
     except json.JSONDecodeError as e:
         print("JSON 解析错误:", e)
 else:
