@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64cf967e-c467-4fd7-8954-1f45fc6bb54a" name="更改" comment="2024年12月23日 17点57分">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="64cf967e-c467-4fd7-8954-1f45fc6bb54a" name="更改" comment="2024年12月24日 09点24分" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -222,7 +220,7 @@
       <workItem from="1734057337733" duration="71525000" />
       <workItem from="1734483500037" duration="896000" />
       <workItem from="1734484427387" duration="22415000" />
-      <workItem from="1734656947898" duration="37268000" />
+      <workItem from="1734656947898" duration="37822000" />
     </task>
     <task id="LOCAL-00001" summary="苏玉恒 2024年12月13日15:15:24">
       <option name="closed" value="true" />
@@ -352,7 +350,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734948091385</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="2024年12月24日 09点24分">
+      <option name="closed" value="true" />
+      <created>1735003499142</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1735003499142</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +389,8 @@
     <MESSAGE value="2024年12月23日09:06:29" />
     <MESSAGE value="2024年12月23日10:39:43" />
     <MESSAGE value="2024年12月23日 17点57分" />
-    <option name="LAST_COMMIT_MESSAGE" value="2024年12月23日 17点57分" />
+    <MESSAGE value="2024年12月24日 09点24分" />
+    <option name="LAST_COMMIT_MESSAGE" value="2024年12月24日 09点24分" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject1126$4.coverage" NAME="4 覆盖结果" MODIFIED="1734945916609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />

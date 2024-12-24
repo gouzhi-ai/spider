@@ -22,7 +22,7 @@ if script_tag:
             'answer': '',
             'explain': [],
             'url': '',
-            'subject':''
+            'subject': ''
         }
         json_data = json.loads(script_tag_string, strict=False)
         data = []
@@ -41,7 +41,8 @@ if script_tag:
                 continue
             if 'Solver' in json_data[i]:
                 jump = 1
-            if '/practice/' in json_data[i] or 'Solver2' in json_data[i] or one_qa_data['subject'].lower() == json_data[i]:
+            if '/practice/' in json_data[i] or 'Solver2' in json_data[i] or one_qa_data['subject'].lower() == json_data[
+                i]:
                 break
             if 'step' == json_data[i]:
                 step = 1
