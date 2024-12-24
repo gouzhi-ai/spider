@@ -1,59 +1,75 @@
 from bs4 import BeautifulSoup
 import json
 import requests
+import re
 
-response = requests.get("https://www.symbolab.com/popular-statistics/statistics-0")
+response = requests.get("https://www.symbolab.com/popular-pre-algebra/pre-algebra-8")
 
 html_content = response.text
+
+item = {
+    'question': 'BUG',
+    'answer': 'BUG',
+    'explain': [],
+    'url': '',
+    'subject': ''
+}
+
+item['url'] = response.url
+item['subject'] = item['url'].split('/')[-1].rsplit('-', 1)[0]
 # 解析 HTML
 soup = BeautifulSoup(html_content, 'html.parser')
 
 # 提取 JSON 数据
 script_tag = soup.find('script', {'id': '__NUXT_DATA__'})
-if script_tag:
-    script_tag_string = str(script_tag.string)
+json_data = json.loads(str(script_tag.string), strict=False)
 
-    # 打印 JSON 数据以调试
-    print("提取的 JSON 数据:", script_tag_string)
+data = []
+for i in json_data:
+    if isinstance(i, str):
+        if i[0:7] == 'jypQO0p': continue
+        data.append(i)
+json_data = data
 
-    try:
-        one_qa_data = {
-            'question': '',
-            'answer': '',
-            'explain': [],
-            'url': '',
-            'subject':''
-        }
-        json_data = json.loads(script_tag_string, strict=False)
-        data = []
-        for i in json_data:
-            if isinstance(i, str):
-                data.append(i)
-        json_data = data
-        step = 0
-        jump = 0
-        one_qa_data['url'] = response.url
-        one_qa_data['subject'] = one_qa_data['url'].split('/')[-1].split('-')[0]
-        for i in range(len(json_data)):
-            print(json_data[i])
-            if jump == 1:
-                jump = 0
-                continue
-            if 'Solver' in json_data[i]:
-                jump = 1
-            if '/practice/' in json_data[i] or 'Solver2' in json_data[i] or one_qa_data['subject'].lower() == json_data[i]:
-                break
-            if 'step' == json_data[i]:
-                step = 1
-                continue
-            if step == 1:
-                one_qa_data['explain'].append(json_data[i])
+# 求 question、answer
+question = 'BUG'
+answer = 'BUG'
+for i in range(len(json_data)):
+    # print(i)
+    if json_data[i] == 'interim':
+        if '=' in json_data[i + 1]:
+            question, answer = json_data[i + 1].split('=', 1)
+            if answer.count('$') % 4 != 0:
+                question = question + "$$"
+                answer = "$$" + answer
+        elif 'quad' in json_data[i + 1]:
 
-            if 'context' in json_data[i] and 'acceptedAnswer' in json_data[i]:
-                one_qa_data['question'] = json_data[i - 2]
-                one_qa_data['answer'] = json_data[i + 2]
-        print(one_qa_data)
-    except json.JSONDecodeError as e:
-        print("JSON 解析错误:", e)
-else:
-    print("未找到包含问题和答案的 JSON 数据。")
+            pattern = r'(.*):.*?quad\}(.*)'
+
+            match = re.search(pattern, json_data[i + 1])
+
+            if match:
+                question = match.group(1).strip()  # 获取冒号前的部分
+                answer = match.group(2).strip()
+                if answer.count('$') % 4 != 0:
+                    question = question + "$$"
+                    answer = "$$" + answer
+                    # print(question,answer)
+        break
+
+item['question'] = question
+item['answer'] = answer
+
+# 求 explain
+explain = []
+for i in range(len(json_data)):
+    # print(json_data[i])
+    if json_data[i] == 'step':
+        start = i+1
+        for j in range(start, len(json_data)):
+            if json_data[j] == item['subject']: break
+            explain.append(json_data[j])
+        break
+
+item['explain'] = explain
+# print(json.dumps(item))

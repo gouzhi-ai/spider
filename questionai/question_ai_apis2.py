@@ -274,37 +274,29 @@ class Question_AI_Apis:
                 continue
 
             index_text = self.get_index(subjectId=subjectId, page=str(page), proxies=self.proxies)
-
-            if index_text == "0":
-                continue
-
+            if index_text == "0": continue
             one_page_simple_data = self.get_simple_data(index_text)
 
             for one_simple_data in one_page_simple_data:
-
                 try:
-                    if compare_time(one_simple_data['datePublished'], initial_time):
+                    if not compare_time(one_simple_data['datePublished'], initial_time):
                         # 没更新
                         self.logger.info(
-                            f"Not updated"
-                            f"datePublished:{one_simple_data['datePublished']} initial_time：{initial_time}  "
+                            f"Not updated datePublished:{one_simple_data['datePublished']} initial_time：{initial_time}  "
                             f"result： {compare_time(one_simple_data['datePublished'], initial_time)}")
+                        new_time = one_simple_data['datePublished']
+                        update_json_time(subject_name, new_time)
                         return all_qa
                     elif new_time == 0:
-                        new_time = one_simple_data['datePublished']
                         # 更新了
-
+                        new_time = one_simple_data['datePublished']
                 except Exception as e:
                     print(one_simple_data)
                     self.logger.error(f"Exception:{e}  {initial_time}")
                     continue
-                # continue
 
-                details_text = self.get_details(subjectId=str(subjectId), page=str(page),
-                                                url=str(one_simple_data['url']), proxies=self.proxies)
-
-                if details_text == "0":
-                    continue
+                details_text = self.get_details(subjectId=str(subjectId), page=str(page), url=str(one_simple_data['url']), proxies=self.proxies)
+                if details_text == "0": continue
                 try:
                     qa_data = self.get_one_data(details_text)
                     qa_data['question']['text'] = one_simple_data['contentLatex']
@@ -333,7 +325,7 @@ class Question_AI_Apis:
                 save_list_to_json(all_qa, f"{subject_name}.json")
             except Exception as e:
                 self.logger.error(f"get_all_subject: Error parsing JSON: {e}")
-                #todo
+                # todo
                 time.sleep(600)
                 self.proxy_ip = get_proxy_ip()
                 self.proxies = get_proxy(self.proxy_ip)

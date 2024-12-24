@@ -46,8 +46,8 @@ def compare_time(time_a: str, time_b: str) -> bool:
         dt_a = datetime.fromisoformat(time_a.replace('Z', '+00:00'))
         dt_b = datetime.fromisoformat(time_b.replace('Z', '+00:00'))
 
-        # 比较两个时间，如果a早于b返回True
-        return dt_a < dt_b
+        # 比较两个时间，如果a晚于b返回True
+        return dt_a > dt_b
     except ValueError as e:
         print(f"错误：输入的时间格式不正确 - {e} ,time_a:{time_a},time_a: {time_b}")
         return False
