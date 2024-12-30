@@ -1,77 +1,26 @@
-from bs4 import BeautifulSoup
-import json
 import requests
-import re
 
-response = requests.get("https://www.symbolab.com/popular-pre-algebra/pre-algebra-8")
 
-html_content = response.text
-
-item = {
-    'question': 'BUG',
-    'answer': 'BUG',
-    'explain': [],
-    'url': '',
-    'subject': ''
+headers = {
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+    "cache-control": "no-cache",
+    "cookie": "_ga=GA1.1.1323559991.1733383172; _ga_XBD2XMMDZB=GS1.1.1735278295.10.1.1735279463.0.0.0",
+    "pragma": "no-cache",
+    "priority": "u=0, i",
+    "referer": "https://www.thecorestandards.org/Math/",
+    "sec-ch-ua": "\\Microsoft",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\\Windows",
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "same-origin",
+    "sec-fetch-user": "?1",
+    "upgrade-insecure-requests": "1",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0"
 }
+url = "https://www.thecorestandards.org/Math/Content/NF/"
+response = requests.get(url, headers=headers)
 
-item['url'] = response.url
-item['subject'] = item['url'].split('/')[-1].rsplit('-', 1)[0]
-# 解析 HTML
-soup = BeautifulSoup(html_content, 'html.parser')
-script_tag = soup.find('div', class_= 'steps-container')
-print(script_tag.get_text())
-#
-# # 提取 JSON 数据
-# script_tag = soup.find('script', {'id': '__NUXT_DATA__'})
-# json_data = json.loads(str(script_tag.string), strict=False)
-#
-# data = []
-# for i in json_data:
-#     if isinstance(i, str):
-#         if i[0:7] == 'jypQO0p': continue
-#         data.append(i)
-# json_data = data
-#
-# # 求 question、answer
-# question = 'BUG'
-# answer = 'BUG'
-# for i in range(len(json_data)):
-#     # print(i)
-#     if json_data[i] == 'interim':
-#         if '=' in json_data[i + 1]:
-#             question, answer = json_data[i + 1].split('=', 1)
-#             if answer.count('$') % 4 != 0:
-#                 question = question + "$$"
-#                 answer = "$$" + answer
-#         elif 'quad' in json_data[i + 1]:
-#
-#             pattern = r'(.*):.*?quad\}(.*)'
-#
-#             match = re.search(pattern, json_data[i + 1])
-#
-#             if match:
-#                 question = match.group(1).strip()  # 获取冒号前的部分
-#                 answer = match.group(2).strip()
-#                 if answer.count('$') % 4 != 0:
-#                     question = question + "$$"
-#                     answer = "$$" + answer
-#                     # print(question,answer)
-#         break
-#
-# item['question'] = question
-# item['answer'] = answer
-#
-# # 求 explain
-# explain = []
-# for i in range(len(json_data)):
-#     # print(json_data[i])
-#     if json_data[i] == 'step':
-#         start = i+1
-#         for j in range(start, len(json_data)):
-#             if json_data[j] == item['subject']: break
-#             explain.append(json_data[j])
-#         break
-#
-# item['explain'] = explain
-# print(json.dumps(item))
+print(response.text)
+print(response)

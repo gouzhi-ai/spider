@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64cf967e-c467-4fd7-8954-1f45fc6bb54a" name="更改" comment="2024年12月25日10:18:52">
+    <list default="true" id="64cf967e-c467-4fd7-8954-1f45fc6bb54a" name="更改" comment="2024年12月25日14:29:58">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/3.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/questionai/crawler.log" beforeDir="false" afterPath="$PROJECT_DIR$/questionai/crawler.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,30 +75,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.3">
-    <configuration name="1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject1126" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.scheduled_tasks">
     <configuration name="2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject1126" />
       <option name="ENV_FILES" value="" />
@@ -191,13 +168,36 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="scheduled_tasks" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject1126" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/questionai" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/questionai/scheduled_tasks.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.3" />
+        <item itemvalue="Python.scheduled_tasks" />
         <item itemvalue="Python.question_ai_apis2" />
+        <item itemvalue="Python.3" />
         <item itemvalue="Python.2" />
         <item itemvalue="Python.4" />
-        <item itemvalue="Python.1" />
       </list>
     </recent_temporary>
   </component>
@@ -223,7 +223,7 @@
       <workItem from="1734057337733" duration="71525000" />
       <workItem from="1734483500037" duration="896000" />
       <workItem from="1734484427387" duration="22415000" />
-      <workItem from="1734656947898" duration="56372000" />
+      <workItem from="1734656947898" duration="61100000" />
     </task>
     <task id="LOCAL-00001" summary="苏玉恒 2024年12月13日15:15:24">
       <option name="closed" value="true" />
@@ -385,7 +385,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735093144889</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="2024年12月25日14:29:58">
+      <option name="closed" value="true" />
+      <created>1735108211833</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1735108211833</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,15 +428,16 @@
     <MESSAGE value="2024年12月24日 09点28分" />
     <MESSAGE value="2024年12月25日10:14:04" />
     <MESSAGE value="2024年12月25日10:18:52" />
-    <option name="LAST_COMMIT_MESSAGE" value="2024年12月25日10:18:52" />
+    <MESSAGE value="2024年12月25日14:29:58" />
+    <option name="LAST_COMMIT_MESSAGE" value="2024年12月25日14:29:58" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject1126$4.coverage" NAME="4 覆盖结果" MODIFIED="1734945916609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/pythonProject1126$1.coverage" NAME="1 覆盖结果" MODIFIED="1734943134042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/pythonProject1126$question_ai_apis2.coverage" NAME="question_ai_apis2 覆盖结果" MODIFIED="1735092744744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/questionai" />
+    <SUITE FILE_PATH="coverage/pythonProject1126$question_ai_apis2.coverage" NAME="question_ai_apis2 覆盖结果" MODIFIED="1735175099342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/questionai" />
     <SUITE FILE_PATH="coverage/pythonProject1126$tutoreva_apis.coverage" NAME="tutoreva_apis 覆盖结果" MODIFIED="1734421183264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tutoreva" />
-    <SUITE FILE_PATH="coverage/pythonProject1126$scheduled_tasks.coverage" NAME="scheduled_tasks 覆盖结果" MODIFIED="1734687548664" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/questionai" />
     <SUITE FILE_PATH="coverage/pythonProject1126$3.coverage" NAME="3 覆盖结果" MODIFIED="1735107333164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/pythonProject1126$scheduled_tasks.coverage" NAME="scheduled_tasks 覆盖结果" MODIFIED="1735177158446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/questionai" />
     <SUITE FILE_PATH="coverage/pythonProject1126$proxy.coverage" NAME="proxy 覆盖结果" MODIFIED="1734314461584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/questionai" />
     <SUITE FILE_PATH="coverage/pythonProject1126$2.coverage" NAME="2 覆盖结果" MODIFIED="1734945930080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/pythonProject1126$test1.coverage" NAME="test1 覆盖结果" MODIFIED="1734516297605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/gauth" />

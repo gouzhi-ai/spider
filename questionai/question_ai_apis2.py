@@ -7,6 +7,7 @@
 
 import json
 import logging
+import socket
 import time
 
 import requests
@@ -14,6 +15,8 @@ from bs4 import BeautifulSoup
 
 from proxy import get_proxy, get_proxy_ip
 from utils import compare_time, get_datetime, is_network_available, get_json_time, update_json_time, get_13_timestamp_ms
+
+socket.setdefaulttimeout(10)
 
 subject = {
     '2': 'math',
@@ -111,12 +114,14 @@ class Question_AI_Apis:
                 response = requests.get(url, headers=headers, params=params, proxies=proxies, timeout=10)
                 if response.status_code == 200:
                     self.logger.info(f'Getting index for {subject[subjectId]} {page} success')
-                    # print(f"index {subject[subjectId]}  {page}  成功 ")
-                    return response.text
+                    response_text=response.text
+                    response.close()
+                    return response_text
                 # else:
                 #     self.proxy_ip = get_proxy_ip()
                 #     self.proxies = get_proxy(self.proxy_ip)
             except Exception as e:
+                # response.close()
                 self.logger.error(f"Crawling stopped due to error: {e}")
                 self.proxy_ip = get_proxy_ip()
                 self.proxies = get_proxy(self.proxy_ip)
@@ -162,13 +167,16 @@ class Question_AI_Apis:
                 if response.status_code == 200:
                     self.logger.info(f'Getting details for {subject[subjectId]} {page}  {url}  success')
                     # print(f"details {subject[subjectId]}  {page}  成功  {url}")
-                    return response.text
+                    response_text=response.text
+                    response.close()
+                    return response_text
                 else:
                     return "0"
                 # else:
                 #     self.proxy_ip = get_proxy_ip()
                 #     self.proxies = get_proxy(self.proxy_ip)
             except Exception as e:
+                # response.close()
                 self.logger.error(f"Crawling stopped due to error: {e}")
                 self.proxy_ip = get_proxy_ip()
                 self.proxies = get_proxy(self.proxy_ip)
@@ -295,7 +303,8 @@ class Question_AI_Apis:
                     self.logger.error(f"Exception:{e}  {initial_time}")
                     continue
 
-                details_text = self.get_details(subjectId=str(subjectId), page=str(page), url=str(one_simple_data['url']), proxies=self.proxies)
+                details_text = self.get_details(subjectId=str(subjectId), page=str(page),
+                                                url=str(one_simple_data['url']), proxies=self.proxies)
                 if details_text == "0": continue
                 try:
                     qa_data = self.get_one_data(details_text)
@@ -317,7 +326,7 @@ class Question_AI_Apis:
     def get_all_subject(self):
         subject_id_list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
         # subject_id_list = ['2']  # test
-        # subject_id_list = ['8', '9', '10', '11', '34', '35', '41', '51']
+        # subject_id_list = ['3', '4', '5', '6', '7', '8', '9', '10', '11', '34', '35', '41', '51']
         for subject_id in subject_id_list:
             subject_name = subject[subject_id]
             try:

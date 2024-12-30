@@ -1,16 +1,28 @@
-from bs4 import BeautifulSoup
-import json
 import requests
+from bs4 import BeautifulSoup
+from markdownify import markdownify as md
+from markdownify import MarkdownConverter
 
-response = requests.get("https://www.symbolab.com/popular-statistics")
+url = "https://thecorestandards.org/Math/Content/1/OA/"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
 
-html_content = response.text
+title = soup.find(class_="article-header")
+title = title.find("h1").get_text()
 
-soup = BeautifulSoup(html_content, 'html.parser')
+# print(title)
 
-# links = soup.find_all('class_', 'solution-examples-page')
-question_links = soup.find_all(class_='popular_line')
-for question_link in question_links:
-    # print(link.text)
-    link = question_link.find('a').attrs['href']
-    print(link)
+sidebar = soup.find(id="sidebar")
+hrefs = [a['href'] for a in sidebar.find_all('a', href=True)]
+print(hrefs)
+
+article = soup.find('article')
+if article:
+    # article_html = md(str(article), strip=['a'])
+    article_text = MarkdownConverter().convert_soup(article)
+    # print(response.text)
+    # print(response)
+
+    # with open("article_content.md", "w", encoding="utf-8") as file:
+    #     file.write(article_html)
+    # print("内容已成功写入article_content.txt")
