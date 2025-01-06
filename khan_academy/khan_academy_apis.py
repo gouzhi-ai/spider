@@ -4,7 +4,6 @@
 # @Author  : 苏玉恒
 # @File    : khan_academy_apis.py
 # @Software: PyCharm
-# khan 请求1
 import json
 import time
 
