@@ -1,0 +1,382 @@
+{
+    "data": {
+        "learnMenuTopics": [
+            {
+                "__typename": "TopicBrowserCategory",
+                "children": [
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xcef32ab6",
+                        "href": "/math/cc-kindergarten-math",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "cc-kindergarten-math",
+                        "translatedTitle": "幼儿园"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x5448e77ecc4e60dc",
+                        "href": "/math/zh-grade-1",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "zh-grade-1",
+                        "translatedTitle": "一年级"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xbc84a0ecd1012b5c",
+                        "href": "/math/zh-grade-2",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "zh-grade-2",
+                        "translatedTitle": "二年级"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xf2f7ddeeb5caa97a",
+                        "href": "/math/zh-grade-3",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "zh-grade-3",
+                        "translatedTitle": "三年级"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x4d57c45ad7c8710d",
+                        "href": "/math/zh-grade-4",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "zh-grade-4",
+                        "translatedTitle": "四年级"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xb919e602d1d01526",
+                        "href": "/math/zh-grade-5",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "zh-grade-5",
+                        "translatedTitle": "五年级"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x4e42ea45ef356e08",
+                        "href": "/math/zh-grade-6",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "zh-grade-6",
+                        "translatedTitle": "六年级"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xf54f025512416342",
+                        "href": "/math/zh-grade-7",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "zh-grade-7",
+                        "translatedTitle": "七年级"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x53b43a0f3967e50d",
+                        "href": "/math/zh-grade-8",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "zh-grade-8",
+                        "translatedTitle": "八年级"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xb4832e56",
+                        "href": "/math/pre-algebra",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "pre-algebra",
+                        "translatedTitle": "初级代数"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xed0a1484",
+                        "href": "/math/algebra-basics",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "algebra-basics",
+                        "translatedTitle": "代数基础"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x33011b0b728b64ea",
+                        "href": "/math/algebra",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "algebra",
+                        "translatedTitle": "代数1"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x3213f4b58d8cf2e6",
+                        "href": "/math/algebra2",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "algebra2",
+                        "translatedTitle": "代数2"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x7fa91416",
+                        "href": "/math/basic-geo",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "basic-geo",
+                        "translatedTitle": "基础几何"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xff63fac4",
+                        "href": "/math/geometry",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "geometry",
+                        "translatedTitle": "高中几何"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xfefa5515",
+                        "href": "/math/trigonometry",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "trigonometry",
+                        "translatedTitle": "三角函数"
+                    }
+                ],
+                "domainId": "x7a488390",
+                "href": "/math",
+                "icon": "https://cdn.kastatic.org/genfiles/topic-icons/icons/math.png-444b34-128c.png",
+                "isNew": false,
+                "slug": "math",
+                "translatedTitle": "数学"
+            },
+            {
+                "__typename": "TopicBrowserCategory",
+                "children": [
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x324d1dcc",
+                        "href": "/science/biology",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "biology",
+                        "translatedTitle": "生物"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x822131fc",
+                        "href": "/science/chemistry",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "chemistry",
+                        "translatedTitle": "化学"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x1079cbfa",
+                        "href": "/science/organic-chemistry",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "organic-chemistry",
+                        "translatedTitle": "有机化学"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x4122fa5d",
+                        "href": "/science/physics",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "physics",
+                        "translatedTitle": "物理"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xcdef9704",
+                        "href": "/science/cosmology-and-astronomy",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "cosmology-and-astronomy",
+                        "translatedTitle": "宇宙学和天文学"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x6e556f83",
+                        "href": "/science/health-and-medicine",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "health-and-medicine",
+                        "translatedTitle": "卫生与医学"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x2102004c",
+                        "href": "/science/electrical-engineering",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "electrical-engineering",
+                        "translatedTitle": "电器工程"
+                    }
+                ],
+                "domainId": "xb92336a2",
+                "href": "/science",
+                "icon": "https://cdn.kastatic.org/genfiles/topic-icons/icons/science_green.png-4ca7bf-128c.png",
+                "isNew": false,
+                "slug": "science",
+                "translatedTitle": "科学\n"
+            },
+            {
+                "__typename": "TopicBrowserCategory",
+                "children": [
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x301707a0",
+                        "href": "/computing/computer-science",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "computer-science",
+                        "translatedTitle": "计算机科学"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xffde7c31",
+                        "href": "/computing/computer-programming",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "computer-programming",
+                        "translatedTitle": "计算机编程"
+                    }
+                ],
+                "domainId": "x45aed616",
+                "href": "/computing",
+                "icon": "https://cdn.kastatic.org/genfiles/topic-icons/icons/computing_orange.png-653676-128c.png",
+                "isNew": true,
+                "slug": "computing",
+                "translatedTitle": "计算机"
+            },
+            {
+                "__typename": "TopicBrowserCategory",
+                "children": [
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x00307e86",
+                        "href": "/humanities/grammar",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "grammar",
+                        "translatedTitle": "语法"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xcd8c69588ef7a6e3",
+                        "href": "/humanities/hass-storytelling",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "hass-storytelling",
+                        "translatedTitle": "讲故事"
+                    }
+                ],
+                "domainId": "x905db83d",
+                "href": "/humanities",
+                "icon": "https://cdn.kastatic.org/genfiles/topic-icons/icons/arts_humanities.png-07c77b-128c.png",
+                "isNew": false,
+                "slug": "humanities",
+                "translatedTitle": "艺术与人文"
+            },
+            {
+                "__typename": "TopicBrowserCategory",
+                "children": [
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x1415bfac",
+                        "href": "/college-careers-more/college-admissions",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "college-admissions",
+                        "translatedTitle": "大学申请"
+                    }
+                ],
+                "domainId": "xcc477d6b",
+                "href": "/college-careers-more",
+                "icon": "https://cdn.kastatic.org/genfiles/topic-icons/icons/life_skills.png-1a4785-128c.png",
+                "isNew": false,
+                "slug": "college-careers-more",
+                "translatedTitle": "大学, 职业和更多"
+            },
+            {
+                "__typename": "TopicBrowserCategory",
+                "children": [
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "x7b572fe4",
+                        "href": "/economics-finance-domain/core-finance",
+                        "isNew": false,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "core-finance",
+                        "translatedTitle": "金融和资本市场"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xba99f16dd99e6fe4",
+                        "href": "/economics-finance-domain/macroeconomics",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "macroeconomics",
+                        "translatedTitle": "宏观经济学"
+                    },
+                    {
+                        "__typename": "TopicBrowserLink",
+                        "courseId": "xaacaf77b",
+                        "href": "/economics-finance-domain/microeconomics",
+                        "isNew": true,
+                        "loggedOutHref": null,
+                        "nonContentLink": false,
+                        "slug": "microeconomics",
+                        "translatedTitle": "微观经济学"
+                    }
+                ],
+                "domainId": "x5ca94af1",
+                "href": "/economics-finance-domain",
+                "icon": "https://cdn.kastatic.org/genfiles/topic-icons/icons/economics_finance.png-55daed-128c.png",
+                "isNew": false,
+                "slug": "economics-finance-domain",
+                "translatedTitle": "经济和金融"
+            }
+        ]
+    }
+}
