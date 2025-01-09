@@ -7,11 +7,14 @@
 
 import json
 
+import requests
 
 def get_subject_course():
     file_path = 'learnMenuTopicsQuery.json'
     data = json.load(open(file_path, 'r', encoding='utf-8'))
     data = data["data"]["learnMenuTopics"]
+
+    print(data)
 
     subject_course = []
 
@@ -35,5 +38,5 @@ def get_subject_course():
     return subject_course
 
 
-def get_ContentForPath():
-    pass
+
+print(get_subject_course())
