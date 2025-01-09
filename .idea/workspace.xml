@@ -4,12 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64cf967e-c467-4fd7-8954-1f45fc6bb54a" name="更改" comment="2025年1月9日11:19:05">
-      <change afterPath="$PROJECT_DIR$/questionai/log/crawler-2025-01-09.log" afterDir="false" />
+    <list default="true" id="64cf967e-c467-4fd7-8954-1f45fc6bb54a" name="更改" comment="2025年1月9日13:44:41">
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-college-careers-more--college-admissions.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-computing--computer-programming.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-computing--computer-science.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-economics-finance-domain--core-finance.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-economics-finance-domain--macroeconomics.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-economics-finance-domain--microeconomics.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-humanities--grammar.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-humanities--hass-storytelling.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--algebra-basics.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--algebra.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--algebra2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--basic-geo.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--cc-kindergarten-math.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--geometry.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--pre-algebra.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--trigonometry.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--zh-grade-1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--zh-grade-2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--zh-grade-3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--zh-grade-4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--zh-grade-5.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--zh-grade-6.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--zh-grade-7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-math--zh-grade-8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-science--biology.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-science--chemistry.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-science--cosmology-and-astronomy.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-science--electrical-engineering.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-science--health-and-medicine.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-science--organic-chemistry.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/ContentForPath/data-science--physics.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/all_ContentForPath.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/finish/ContentForPath.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/finish/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khan_academy/finish/subject_course.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/questionai/2025-01-09_biology.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/questionai/2025-01-09_english.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/questionai/2025-01-09_history.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/khan_academy/ContentForPath.py" beforeDir="false" afterPath="$PROJECT_DIR$/khan_academy/ContentForPath.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/khan_academy/subject_course.py" beforeDir="false" afterPath="$PROJECT_DIR$/khan_academy/subject_course.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/questionai/question_ai_apis2.py" beforeDir="false" afterPath="$PROJECT_DIR$/questionai/question_ai_apis2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khan_academy/ContentForPath.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/khan_academy/subject_course.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/questionai/log/crawler-2025-01-09.log" beforeDir="false" afterPath="$PROJECT_DIR$/questionai/log/crawler-2025-01-09.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/questionai/update_time.json" beforeDir="false" afterPath="$PROJECT_DIR$/questionai/update_time.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +97,7 @@
     "Python.3.executor": "Run",
     "Python.4.executor": "Run",
     "Python.ContentForPath.executor": "Run",
+    "Python.all_ContentForPath.executor": "Run",
     "Python.proxy.executor": "Run",
     "Python.question_ai_apis2.executor": "Run",
     "Python.scheduled_tasks.executor": "Run",
@@ -79,30 +117,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.subject_course">
-    <configuration name="1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject1126" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.all_ContentForPath">
     <configuration name="2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject1126" />
       <option name="ENV_FILES" value="" />
@@ -164,6 +179,29 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/khan_academy/ContentForPath.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="all_ContentForPath" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject1126" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/khan_academy" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/khan_academy/all_ContentForPath.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -289,11 +327,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.all_ContentForPath" />
         <item itemvalue="Python.subject_course" />
         <item itemvalue="Python.ContentForPath" />
         <item itemvalue="Python.scheduled_tasks" />
         <item itemvalue="Python.question_ai_apis2" />
-        <item itemvalue="Python.1" />
       </list>
     </recent_temporary>
   </component>
@@ -546,7 +584,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736392759223</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="2025年1月9日13:44:41">
+      <option name="closed" value="true" />
+      <created>1736401580524</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1736401580524</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +635,8 @@
     <MESSAGE value="2025年1月9日10:26:43" />
     <MESSAGE value="2025年1月9日10:37:35" />
     <MESSAGE value="2025年1月9日11:19:05" />
-    <option name="LAST_COMMIT_MESSAGE" value="2025年1月9日11:19:05" />
+    <MESSAGE value="2025年1月9日13:44:41" />
+    <option name="LAST_COMMIT_MESSAGE" value="2025年1月9日13:44:41" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject1126$4.coverage" NAME="4 覆盖结果" MODIFIED="1734945916609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
@@ -597,11 +644,12 @@
     <SUITE FILE_PATH="coverage/pythonProject1126$question_ai_apis2.coverage" NAME="question_ai_apis2 覆盖结果" MODIFIED="1736401087458" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/questionai" />
     <SUITE FILE_PATH="coverage/pythonProject1126$subject_course.coverage" NAME="subject_course 覆盖结果" MODIFIED="1736401393742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/khan_academy" />
     <SUITE FILE_PATH="coverage/pythonProject1126$tutoreva_apis.coverage" NAME="tutoreva_apis 覆盖结果" MODIFIED="1734421183264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tutoreva" />
-    <SUITE FILE_PATH="coverage/pythonProject1126$3.coverage" NAME="3 覆盖结果" MODIFIED="1735107333164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/pythonProject1126$scheduled_tasks.coverage" NAME="scheduled_tasks 覆盖结果" MODIFIED="1736401122754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/questionai" />
+    <SUITE FILE_PATH="coverage/pythonProject1126$test1.coverage" NAME="test1 覆盖结果" MODIFIED="1734516297605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/gauth" />
+    <SUITE FILE_PATH="coverage/pythonProject1126$all_ContentForPath.coverage" NAME="all_ContentForPath 覆盖结果" MODIFIED="1736405180233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/khan_academy" />
+    <SUITE FILE_PATH="coverage/pythonProject1126$3.coverage" NAME="3 覆盖结果" MODIFIED="1735107333164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/pythonProject1126$proxy.coverage" NAME="proxy 覆盖结果" MODIFIED="1734314461584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/questionai" />
     <SUITE FILE_PATH="coverage/pythonProject1126$2.coverage" NAME="2 覆盖结果" MODIFIED="1734945930080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/pythonProject1126$ContentForPath.coverage" NAME="ContentForPath 覆盖结果" MODIFIED="1736401200774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/khan_academy" />
-    <SUITE FILE_PATH="coverage/pythonProject1126$test1.coverage" NAME="test1 覆盖结果" MODIFIED="1734516297605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/gauth" />
   </component>
 </project>
