@@ -5,10 +5,18 @@
 # @File    : ContentForPath.py
 # @Software: PyCharm
 import json
+import random
+import socket
+import time
+
 import requests
+import os
+from subject_course import get_subject_course
+
+socket.setdefaulttimeout(10)
 
 
-def get_ContentPath(one_subject_course_path):
+def get_ContentForPath(one_subject_course_path):
     headers = {
         'accept': "*/*",
         'accept-language': "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
@@ -35,10 +43,50 @@ def get_ContentPath(one_subject_course_path):
                      '","countryCode":"HK","kaLocale":"zh-hans","clientPublishedContentVersion":"28777b8f54f630af2e448bdc39f1a7fef7d86f4d"}',
         "lang": "zh-hans"
     }
+    requests.session().keep_alive = False
     response = requests.get(url, headers=headers, params=params)
+    response_text = response.text
+    response.close()
+    # print(response.text)
+    # print(response)
+    return response_text
 
-    print(response.text)
-    print(response)
+
+def put_ContentForPath(response_text, one_subject_course_path):
+    ContentForPath_directory = 'ContentForPath'
+    if not os.path.exists(ContentForPath_directory):
+        os.mkdir(ContentForPath_directory)
+
+    data = json.loads(response_text)
+    json_file_name = f'data-{one_subject_course_path}.json'
+
+    json_file_path = os.path.join(ContentForPath_directory, json_file_name)
+
+    with open(json_file_path, 'w', encoding='utf-8') as json_file:
+        json.dump(data, json_file, ensure_ascii=False, indent=4)  # ensure_ascii=False 以支持中文字符
+
+    print(f"字典已保存到 {json_file_path}")
 
 
-get_ContentPath('math/algebra2')
+if __name__ == '__main__':
+    all_subject_course = get_subject_course()
+
+    nokk = 0
+    for one_subject in all_subject_course:
+        all_course = one_subject["subjectChildren"]
+
+        if one_subject["subjectSlug"] == "humanities":
+            nokk = 1
+        if nokk == 1:
+            print("Start!!")
+        elif nokk == 0:
+            continue
+
+        for one_course in all_course:
+            href = one_course["courseHref"][1:]
+            print(href, "start")
+            put_ContentForPath(get_ContentForPath(href),
+                               str(one_subject["subjectSlug"] + "--" + one_course["courseSlug"]))
+            print(href, "end")
+            time.sleep(5 + random.random())
+    pass

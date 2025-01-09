@@ -14,10 +14,10 @@ def get_subject_course():
     data = json.load(open(file_path, 'r', encoding='utf-8'))
     data = data["data"]["learnMenuTopics"]
 
-    print(data)
+    # print(data)
 
     subject_course = []
-
+    # num=0
     for subject in data:
         one_subject = {
             "subjectId": subject["domainId"],
@@ -30,10 +30,13 @@ def get_subject_course():
                 "courseId": child["courseId"],
                 "courseSlug": child["slug"],
                 "courseName": child["translatedTitle"],
+                "courseHref": child["href"],
             }
             one_subject["subjectChildren"].append(one_course)
         subject_course.append(one_subject)
 
+        # num=num+len(subject["children"])
+    # print(num)
     # print(subject_course[0]["subjectChildren"][12])
     return subject_course
 
