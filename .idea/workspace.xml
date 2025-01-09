@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64cf967e-c467-4fd7-8954-1f45fc6bb54a" name="更改" comment="2024年12月31日09:28:01">
+    <list default="true" id="64cf967e-c467-4fd7-8954-1f45fc6bb54a" name="更改" comment="2025年1月9日10:26:43">
+      <change afterPath="$PROJECT_DIR$/khan_academy/subject_course.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/questionai/crawler.log" beforeDir="false" afterPath="$PROJECT_DIR$/questionai/crawler.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/questionai/crawler_2024年12月16日_question_ai.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/questionai/question_ai_apis2.py" beforeDir="false" afterPath="$PROJECT_DIR$/questionai/question_ai_apis2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/questionai/update_time.json" beforeDir="false" afterPath="$PROJECT_DIR$/questionai/update_time.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/1.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,9 +40,6 @@
     &quot;accountId&quot;: &quot;85ac18fe-0139-4259-8ae5-e1f5db34a6c9&quot;
   }
 }</component>
-  <component name="PerforceDirect.Settings">
-    <option name="CHARSET" value="无" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
@@ -520,7 +518,31 @@
       <option name="project" value="LOCAL" />
       <updated>1735608504818</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="2025年1月9日10:21:46">
+      <option name="closed" value="true" />
+      <created>1736389317778</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1736389317778</updated>
+    </task>
+    <task id="LOCAL-00024" summary="2025年1月9日10:24:59">
+      <option name="closed" value="true" />
+      <created>1736389517531</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1736389517531</updated>
+    </task>
+    <task id="LOCAL-00025" summary="2025年1月9日10:26:43">
+      <option name="closed" value="true" />
+      <created>1736389613896</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1736389613896</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -557,7 +579,10 @@
     <MESSAGE value="2024年12月25日10:18:52" />
     <MESSAGE value="2024年12月25日14:29:58" />
     <MESSAGE value="2024年12月31日09:28:01" />
-    <option name="LAST_COMMIT_MESSAGE" value="2024年12月31日09:28:01" />
+    <MESSAGE value="2025年1月9日10:21:46" />
+    <MESSAGE value="2025年1月9日10:24:59" />
+    <MESSAGE value="2025年1月9日10:26:43" />
+    <option name="LAST_COMMIT_MESSAGE" value="2025年1月9日10:26:43" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject1126$4.coverage" NAME="4 覆盖结果" MODIFIED="1734945916609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
